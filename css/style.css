@@ -1,0 +1,24 @@
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+td, th{
+	width: 35px;
+	height: 35px;
+}
+
+td{
+	text-align: center;
+}
+
+.orange{
+	background-color: orange !important;
+}
+.bleu{
+	background-color: blue;
+} 
+
