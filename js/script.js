@@ -47,7 +47,7 @@ $(document).ready(function(){
 			console.log(letter);
 			var letter = letter.toUpperCase();
 			var first_case_by_line = $('tr td:nth-child(1)');
-			$(first_case_by_line).addClass('orange');
+			$(first_case_by_line).addClass('lettreCorrect');
 			$(first_case_by_line).html(letter); 
 		}
 
@@ -74,10 +74,10 @@ $(document).ready(function(){
 			for(var i = 0; i < this.taille; i++ ){
 				$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')').html(mot_propose.charAt(i));
 				if(this.mot.mot_a_trouver.charAt(i) === mot_propose.charAt(i))
-					$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')').addClass('orange');
+					$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')').addClass('lettreCorrect');
 				var present_dans_le_mot = tmp.indexOf(mot_propose.charAt(i));
 				if(present_dans_le_mot !== -1){
-					$('table tr:nth-child(' + (this.tentative  + 1) + ') td:nth-child('+ (i + 1) +')').addClass('bleu');
+					$('table tr:nth-child(' + (this.tentative  + 1) + ') td:nth-child('+ (i + 1) +')').addClass('lettreMalPlacee');
 					tmp = tmp.replace(mot_propose.charAt(i));
 				}
 				console.log(mot_propose.charAt(i));
