@@ -101,12 +101,17 @@ $(document).ready(function(){
 			this.ajouterTentative(mot_propose)
 		}
 	}
-	var taille = parseInt($('#taille_mot').val());
-	var nombre_essai = parseInt($('#nombre_essai').val());
-	var motus = new Motus(taille , nombre_essai);
-	motus.creerTableau();
+	
 	$('button').click(function(){
-		motus.proposerMot($("#mot").val());
+		//motus.proposerMot($("#mot").val());
 	});
 
+	$('#config').on('click', function(){
+		var taille = parseInt($('#taille_mot').val());
+		var nombre_essai = parseInt($('#nombre_essai').val());
+		var motus = new Motus(taille , nombre_essai);
+		motus.creerTableau();
+		$(this).hide();
+		$('#play').show(15000, "easeOutQuint");
+	});
 });
