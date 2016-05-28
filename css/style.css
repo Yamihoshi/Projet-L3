@@ -2,7 +2,6 @@ table {
     border-collapse: collapse;
     border:1px solid black;
     color:white;
-    text-shadow: 0 0 3px #FFFFFF;
     font-weight:bold;
 }
 
