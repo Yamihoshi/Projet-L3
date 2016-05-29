@@ -1,4 +1,15 @@
 "use strict";
+
+
+function timerEvent()
+{
+	var temps = parseInt($("#timer").text());
+	if(temps>0)
+		$("#timer").text(temps-1);
+
+}
+
+
 $(document).ready(function(){
 
 	class MotCherche{
@@ -60,8 +71,7 @@ $(document).ready(function(){
 				str+='</tr>';
 			}
 			$('table tbody').append(str);
-			/* Jcrois tu montres pas la première lettre*/
-			//this.first_letter(this.mot.mot_a_trouver.charAt(0)); 
+			this.first_letter(this.mot.mot_a_trouver.charAt(0)); 
 		}
 
  
@@ -104,12 +114,13 @@ $(document).ready(function(){
 	}
 
 	var motus;
+	var timer;
 	
 	$('#validerMot').click(function(){
 		motus.proposerMot($("#mot").text());
 	});
 
-	var keyPressed=false; //pour stopper l'appui consécutif
+	//var keyPressed=false; //pour stopper l'appui consécutif
 
 	$('#config').on('click', function(){
 		var taille = parseInt($('#taille_mot').val());
@@ -118,13 +129,18 @@ $(document).ready(function(){
 		motus.creerTableau();
 		$(this).hide();
 		$('#play').show(250);
+
+
+		/*TIMER*/
+		timer = setInterval(timerEvent, 1000);
+
 	});
 
 	$("body").keydown(function(event)
 	{
-		if(event.keyCode>=65 && event.keyCode<=90 && !keyPressed)
+		if(event.keyCode>=65 && event.keyCode<=90 /*&& !keyPressed*/)
 		{
-			keyPressed=true;
+			//keyPressed=true;
 			console.log(event.key.toUpperCase());
 
 			$("#mot").append(event.key.toUpperCase()); //TEST, à ajouter dans le carré courrant
@@ -137,11 +153,16 @@ $(document).ready(function(){
 		}
 	});
 
-	$("body").keyup(function(event)
+	$("#timer").change(function()
+	{
+		if(parseInt($(this).text())==0)
+			clearInterval(timer);
+	});
+
+	/*$("body").keyup(function(event)
 	{
 
 		keyPressed=false;
-	});
-
+	});*/
 
 });
