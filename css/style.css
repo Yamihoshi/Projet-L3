@@ -4,8 +4,6 @@ table {
     color:white;
     text-shadow: black 0.5px 1px; /* couleur,x,y*/
     font-weight:bold;
-    width:80%;
-    height:80%;
     text-align: center;
     margin:auto;
 }
@@ -14,8 +12,8 @@ th, td {
     border: 1px solid lightblue;
    /* background-color:#1895e7;*/
     background: linear-gradient(#2eb2fc, #0268cc);
-    width: 10vh;
-	height: 10vh;
+    width: 70px;
+	height: 70px;
 }
 
 .lettreCorrect{
