@@ -109,6 +109,7 @@ $(document).ready(function(){
 			if(this.mot_deja_propose.indexOf(mot_propose) !== -1){
 			 // gestion erreur
 			 console.log("lost");
+			 this.ajouterMauvaisMot(); /* ????*/
 			}
 			else{
 				if(this.mot.verificationMot(mot_propose)){
@@ -174,6 +175,8 @@ $(document).ready(function(){
 			clearInterval(timer);
 			motus.proposerMot($("#mot").text());
 			$("#mot").text("");
+			$("#timer").text(8);
+			timer = setInterval(timerEvent, 1000);
 		}
 	});
 
