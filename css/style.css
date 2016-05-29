@@ -1,3 +1,7 @@
+body{
+    font-size: 1em;
+}
+
 table {
     border-collapse: collapse;
     border:1px solid black;
@@ -6,6 +10,7 @@ table {
     font-weight:bold;
     text-align: center;
     margin:auto;
+    font-size: 3em;
 }
 
 th, td {
@@ -30,7 +35,19 @@ th, td {
     height:80%;
     margin:auto;
 }
-
+#timer{
+    width: 160px;
+    height: 160px;
+    font-size: 10em;
+    display: inline-block;
+    -webkit-animation: circle infinite 1s linear;
+    -moz-animation: circle infinite 1s linear;
+    -o-animation: circle infinite 1s linear;
+    animation: circle infinite 1s linear;
+    border: 2px solid red;
+    border-top-color: transparent;
+    border-radius: 100%;
+}
 textarea
 {
     resize:none;
@@ -45,4 +62,32 @@ textarea
 .wrongWord
 {
     background:black;
+}
+#timer div{
+    background-color: blue;
+    width: 150px;
+    height: 150px;
+    display: inline-block;
+    border-radius: 100%;
+    margin-top: 5px;
+}
+
+
+
+@keyframes circle
+{
+    0%
+    {
+        -webkit-transform: rotate(0);
+            -ms-transform: rotate(0);
+             -o-transform: rotate(0);
+                transform: rotate(0);
+    }
+    100%
+    {
+        -webkit-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+             -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
 }
