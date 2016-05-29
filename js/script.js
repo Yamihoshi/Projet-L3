@@ -125,7 +125,13 @@ $(document).ready(function(){
 			keyPressed=true;
 			console.log(event.key.toUpperCase());
 
-			$("body").append(event.key.toUpperCase() + " "); //TEST, à ajouter dans le carré courrant
+			$("#mot").append(event.key.toUpperCase()); //TEST, à ajouter dans le carré courrant
+		}
+
+		else if(event.keyCode == 8 ) //Supp
+		{
+			var mot=$("#mot").text();
+			$("#mot").text(mot.substr(0,mot.length-1));
 		}
 	});
 
