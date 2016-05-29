@@ -115,7 +115,7 @@ $(document).ready(function(){
 		var motus = new Motus(taille , nombre_essai);
 		motus.creerTableau();
 		$(this).hide();
-		$('#play').show(15000, "easeOutQuint");
+		$('#play').show(250);
 	});
 
 	$("body").keydown(function(event)
