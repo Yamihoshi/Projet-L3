@@ -60,7 +60,8 @@ $(document).ready(function(){
 				str+='</tr>';
 			}
 			$('table tbody').append(str);
-			this.first_letter(this.mot.mot_a_trouver.charAt(0));
+			/* Jcrois tu montres pas la première lettre*/
+			//this.first_letter(this.mot.mot_a_trouver.charAt(0)); 
 		}
 
  
@@ -106,6 +107,8 @@ $(document).ready(function(){
 		//motus.proposerMot($("#mot").val());
 	});
 
+	var keyPressed=false; //pour stopper l'appui consécutif
+
 	$('#config').on('click', function(){
 		var taille = parseInt($('#taille_mot').val());
 		var nombre_essai = parseInt($('#nombre_essai').val());
@@ -114,4 +117,23 @@ $(document).ready(function(){
 		$(this).hide();
 		$('#play').show(15000, "easeOutQuint");
 	});
+
+	$("body").keydown(function(event)
+	{
+		if(event.keyCode>=65 && event.keyCode<=90 && !keyPressed)
+		{
+			keyPressed=true;
+			console.log(event.key.toUpperCase());
+
+			$("body").append(event.key.toUpperCase() + " "); //TEST, à ajouter dans le carré courrant
+		}
+	});
+
+	$("body").keyup(function(event)
+	{
+
+		keyPressed=false;
+	});
+
+
 });
