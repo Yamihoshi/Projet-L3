@@ -3,9 +3,9 @@
 
 function timerEvent()
 {
-	var temps = parseInt($("#timer").text());
+	var temps = parseInt($("#valTimer").text());
 	if(temps>0)
-		$("#timer div").text(temps-1).trigger("timerChange");
+		$("#valTimer").text(temps-1).trigger("timerChange");
 
 }
 
@@ -175,7 +175,7 @@ $(document).ready(function(){
 			clearInterval(timer);
 			motus.proposerMot($("#mot").text());
 			$("#mot").text("");
-			$("#timer div").text(8);
+			$("#valTimer").text(8);
 			timer = setInterval(timerEvent, 1000);
 		}
 	});

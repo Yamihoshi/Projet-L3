@@ -36,16 +36,17 @@ th, td {
     margin:auto;
 }
 #timer{
-    width: 160px;
-    height: 160px;
-    font-size: 10em;
+    width: 150px;
+    height: 150px;
     display: inline-block;
     -webkit-animation: circle infinite 1s linear;
     -moz-animation: circle infinite 1s linear;
     -o-animation: circle infinite 1s linear;
     animation: circle infinite 1s linear;
     border: 2px solid red;
-    border-top-color: transparent;
+    border-top-color: rgba(0, 0, 0, .2);
+    border-right-color: rgba(0, 0, 0, .2);
+    border-bottom-color: rgba(0, 0, 0, .2);
     border-radius: 100%;
 }
 textarea
@@ -63,17 +64,15 @@ textarea
 {
     background:black;
 }
-#timer div{
-    background-color: blue;
-    width: 150px;
-    height: 150px;
+ #valTimer{
+    position: relative;
+    top: -45px;
+    left: -49.25%;
+    font-size: 9em;
+ }
+.wrapper{
     display: inline-block;
-    border-radius: 100%;
-    margin-top: 5px;
 }
-
-
-
 @keyframes circle
 {
     0%
