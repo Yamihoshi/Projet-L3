@@ -5,7 +5,7 @@ function timerEvent()
 {
 	var temps = parseInt($("#timer").text());
 	if(temps>0)
-		$("#timer").text(temps-1);
+		$("#timer").text(temps-1).trigger("timerChange");
 
 }
 
@@ -95,6 +95,13 @@ $(document).ready(function(){
 			}
 		}
 
+		ajouterMauvaisMot()
+		{
+			for(var i = 1; i < this.taille; i++ ){
+				$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')').addClass("wrongWord");
+			}
+		}
+
 		proposerMot(mot_propose){
 			mot_propose = mot_propose.toUpperCase();
 			if(this.mot.motTrouve(mot_propose))
@@ -108,6 +115,11 @@ $(document).ready(function(){
 					console.log("enter");
 					this.ajouterMotTableau(mot_propose);
 				}
+
+				else
+				{
+					this.ajouterMauvaisMot();
+				}
 			}
 			this.ajouterTentative(mot_propose)
 		}
@@ -118,6 +130,7 @@ $(document).ready(function(){
 	
 	$('#validerMot').click(function(){
 		motus.proposerMot($("#mot").text());
+		$("#mot").text("");
 	});
 
 	//var keyPressed=false; //pour stopper l'appui consécutif
@@ -153,10 +166,15 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#timer").change(function()
-	{
+	$("#timer").bind("timerChange", function() {
+
 		if(parseInt($(this).text())==0)
+		{
+			console.log("OK");
 			clearInterval(timer);
+			motus.proposerMot($("#mot").text());
+			$("#mot").text("");
+		}
 	});
 
 	/*$("body").keyup(function(event)
