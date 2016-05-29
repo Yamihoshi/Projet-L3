@@ -82,8 +82,12 @@ $(document).ready(function(){
 
 		ajouterMotTableau(mot_propose){
 			var tmp = this.mot.mot_a_trouver;
+			var audio = new Audio("sound/bip.wav");
 			var present_dans_le_mot = tmp.indexOf(mot_propose.charAt(i));
 			for(var i = 0; i < this.taille; i++ ){
+
+				audio.play();
+
 				$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')').html(mot_propose.charAt(i));
 				if(this.mot.mot_a_trouver.charAt(i) === mot_propose.charAt(i))
 					$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')').addClass('lettreCorrect');
