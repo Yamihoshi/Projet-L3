@@ -1,5 +1,6 @@
 body{
     font-size: 1em;
+    background-color: red;
 }
 
 table {
@@ -34,6 +35,9 @@ th, td {
     width:60%;
     height:80%;
     margin:auto;
+}
+#config{
+    text-align: center;
 }
 #timer{
     width: 150px;
@@ -90,3 +94,4 @@ textarea
                 transform: rotate(360deg);
     }
 }
+

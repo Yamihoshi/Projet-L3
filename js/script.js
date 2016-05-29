@@ -55,7 +55,6 @@ $(document).ready(function(){
 		}
 
 		first_letter(letter) {
-			console.log(letter);
 			var letter = letter.toUpperCase();
 			var first_case_by_line = $('tr td:nth-child(1)');
 			$(first_case_by_line).addClass('lettreCorrect');
@@ -140,12 +139,12 @@ $(document).ready(function(){
 
 	//var keyPressed=false; //pour stopper l'appui consécutif
 
-	$('#config').on('click', function(){
+	$('#config').on('click', 'button', function(){
 		var taille = parseInt($('#taille_mot').val());
 		var nombre_essai = parseInt($('#nombre_essai').val());
 		motus = new Motus(taille , nombre_essai);
 		motus.creerTableau();
-		$(this).hide();
+		$('#config').hide();
 		$('#play').show(250);
 
 
