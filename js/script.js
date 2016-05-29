@@ -72,12 +72,12 @@ $(document).ready(function(){
 
 		ajouterMotTableau(mot_propose){
 			var tmp = this.mot.mot_a_trouver;
+			var present_dans_le_mot = tmp.indexOf(mot_propose.charAt(i));
 			for(var i = 0; i < this.taille; i++ ){
 				$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')').html(mot_propose.charAt(i));
 				if(this.mot.mot_a_trouver.charAt(i) === mot_propose.charAt(i))
 					$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')').addClass('lettreCorrect');
-				var present_dans_le_mot = tmp.indexOf(mot_propose.charAt(i));
-				if(present_dans_le_mot !== -1){
+				else if(present_dans_le_mot !== -1){
 					$('table tr:nth-child(' + (this.tentative  + 1) + ') td:nth-child('+ (i + 1) +')').addClass('lettreMalPlacee');
 					tmp = tmp.replace(mot_propose.charAt(i));
 				}
@@ -102,9 +102,11 @@ $(document).ready(function(){
 			this.ajouterTentative(mot_propose)
 		}
 	}
+
+	var motus;
 	
-	$('button').click(function(){
-		//motus.proposerMot($("#mot").val());
+	$('#validerMot').click(function(){
+		motus.proposerMot($("#mot").text());
 	});
 
 	var keyPressed=false; //pour stopper l'appui consécutif
@@ -112,7 +114,7 @@ $(document).ready(function(){
 	$('#config').on('click', function(){
 		var taille = parseInt($('#taille_mot').val());
 		var nombre_essai = parseInt($('#nombre_essai').val());
-		var motus = new Motus(taille , nombre_essai);
+		motus = new Motus(taille , nombre_essai);
 		motus.creerTableau();
 		$(this).hide();
 		$('#play').show(250);
