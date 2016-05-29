@@ -167,7 +167,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#timer").bind("timerChange", function() {
+	$("#valTimer").bind("timerChange", function() {
 
 		if(parseInt($(this).text())==0)
 		{
