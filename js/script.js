@@ -114,9 +114,9 @@ $(document).ready(function(){
 				}
 
 				delay=225*(i+1);
-				(function(s,delayTime,myCase,myClass,audioToPlay){
+				(function(delayTime,myCase,myClass,audioToPlay){
 	        		setTimeout( function(){audioToPlay.load();myCase.addClass(myClass);audioToPlay.play();}, delayTime);
-	    		})(i,delay,caseARemplir,classLettre,audio);
+	    		})(delay,caseARemplir,classLettre,audio);
 
 			}
 			if(this.victoire(mot_propose)){
