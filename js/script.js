@@ -66,7 +66,7 @@ $(document).ready(function(){
 			for(var j =0; j < this.essai; j++){
 				str += "<tr>";
 				for(var i = 0; i < this.taille; i++)
-					str+='<td></td>';
+					str+='<td class="lettreNnormal"></td>';
 				str+='</tr>';
 			}
 			$('table tbody').append(str);
@@ -87,15 +87,17 @@ $(document).ready(function(){
 
 				var present_dans_le_mot = tmp.indexOf(mot_propose.charAt(i));
 				var caseARemplir=$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')');
-				var classLettre;
+				var classLettre ='lettreNormal';
 
 				$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')').html(mot_propose.charAt(i));
 				if(this.mot.mot_a_trouver.charAt(i) === mot_propose.charAt(i))
 				{
+					console.log(" 1. " + this.mot.mot_a_trouver.charAt(i) + " 20. "+  mot_propose.charAt(i))
 					audio = new Audio("sound/bienPlacee.wav");
 					classLettre='lettreCorrect';
 				}
 				else if(present_dans_le_mot !== -1){
+					console.log(" 2. " + this.mot.mot_a_trouver.charAt(i) + " 20. "+  mot_propose.charAt(i))
 					audio = new Audio("sound/malPlacee.wav");
 					classLettre='lettreMalPlacee';
 					tmp = tmp.replace(mot_propose.charAt(i));
@@ -107,6 +109,9 @@ $(document).ready(function(){
 	    		})(i,delay,caseARemplir,classLettre,audio);
 
 				console.log(mot_propose.charAt(i));
+			}
+			if(this.victoire(mot_propose)){
+				this.gestionVictoire();
 			}
 		}
 
@@ -128,7 +133,6 @@ $(document).ready(function(){
 			}
 			else{
 				if(this.mot.verificationMot(mot_propose)){
-					console.log("enter");
 					this.ajouterMotTableau(mot_propose);
 				}
 
@@ -138,6 +142,14 @@ $(document).ready(function(){
 				}
 			}
 			this.ajouterTentative(mot_propose)
+		}
+		victoire(mot_propose){
+			return this.mot.motTrouve(mot_propose);
+		}
+
+		gestionVictoire(){
+			$('#play').hide();
+			$('#config').show(250);
 		}
 	}
 
