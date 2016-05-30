@@ -187,8 +187,10 @@ $(document).ready(function(){
 
 
 		/*TIMER*/
-		timer = setInterval(timerEvent, 1000);
-
+		setTimeout(function()
+		{
+			timer = setInterval(timerEvent, 1000);
+		},250);
 	});
 
 	$("body").keydown(function(event)
