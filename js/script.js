@@ -102,6 +102,11 @@ $(document).ready(function(){
 					classLettre='lettreMalPlacee';
 					tmp = tmp.replace(mot_propose.charAt(i));
 				}
+				else
+				{
+					classLettre='';
+					audio = new Audio("sound/mauvaiseLettre.wav");
+				}
 
 				delay=225*(i+1);
 				(function(s,delayTime,myCase,myClass,audioToPlay){
