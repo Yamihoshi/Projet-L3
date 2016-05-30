@@ -174,10 +174,10 @@ $(document).ready(function(){
 	
 	$('#validerMot').click(function(){
 		clearInterval(timer);
-		motus.proposerMot($("#mot").text());
+		motus.proposerMot($("#mot").val());
 			setTimeout(function()
 			{
-				$("#mot").text("");
+				$("#mot").val("");
 				$("#valTimer").text(8);
 				timer = setInterval(timerEvent, 1000);
 			},2000);
@@ -203,7 +203,15 @@ $(document).ready(function(){
 
 	$("body").keydown(function(event)
 	{
-		if(event.keyCode>=65 && event.keyCode<=90 /*&& !keyPressed*/)
+		if(event.keyCode>=65 && event.keyCode<=90 && !$("#mot").is(":focus"))
+		{
+			$("#mot").val($("#mot").val()+event.key.toUpperCase());
+		}
+	});
+
+	/*$("body").keydown(function(event)
+	{
+		if(event.keyCode>=65 && event.keyCode<=90 && !keyPressed)
 		{
 			//keyPressed=true;
 			console.log(event.key.toUpperCase());
@@ -216,17 +224,17 @@ $(document).ready(function(){
 			var mot=$("#mot").text();
 			$("#mot").text(mot.substr(0,mot.length-1));
 		}
-	});
+	});*/
 
 	$("#valTimer").bind("timerChange", function() {
 
 		if(parseInt($(this).text())==0)
 		{
 			clearInterval(timer);
-			motus.proposerMot($("#mot").text());
+			motus.proposerMot($("#mot").val());
 			setTimeout(function()
 			{
-				$("#mot").text("");
+				$("#mot").val("");
 				$("#valTimer").text(8);
 				timer = setInterval(timerEvent, 1000);
 			},2000);
