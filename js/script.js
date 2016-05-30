@@ -96,6 +96,8 @@ $(document).ready(function(){
 					console.log(" 1. " + this.mot.mot_a_trouver.charAt(i) + " 20. "+  mot_propose.charAt(i))
 					audio = new Audio("sound/bienPlacee.wav");
 					classLettre='lettreCorrect';
+					tmp = tmp.replace(mot_propose.charAt(i));
+
 				}
 				else if(present_dans_le_mot !== -1){
 					console.log(" 2. " + this.mot.mot_a_trouver.charAt(i) + " 20. "+  mot_propose.charAt(i))
