@@ -99,25 +99,33 @@ $(document).ready(function(){
 					tmp = tmp.replace(mot_propose.charAt(i));
 
 				}
-				else if(present_dans_le_mot !== -1){
-					console.log(" 2. " + this.mot.mot_a_trouver.charAt(i) + " 20. "+  mot_propose.charAt(i))
-					audio = new Audio("sound/malPlacee.wav");
-					classLettre='lettreMalPlacee';
-					tmp = tmp.replace(mot_propose.charAt(i));
-				}
-				else
-				{
-					classLettre='';
-					audio = new Audio("sound/mauvaiseLettre.wav");
-				}
 
 				delay=225*(i+1);
 				(function(s,delayTime,myCase,myClass,audioToPlay){
 	        		setTimeout( function(){audioToPlay.load();myCase.addClass(myClass);audioToPlay.play();}, delayTime);
 	    		})(i,delay,caseARemplir,classLettre,audio);
 
-				console.log(mot_propose.charAt(i));
 			}
+			for(var i = 0; i < this.taille; i++ ){
+				var present_dans_le_mot = tmp.indexOf(mot_propose.charAt(i));
+				var caseARemplir=$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')');
+				var classLettre ='lettreNormal';
+				if(present_dans_le_mot !== -1){
+					console.log(" 2. " + this.mot.mot_a_trouver.charAt(i) + " 20. "+  mot_propose.charAt(i))
+					audio = new Audio("sound/malPlacee.wav");
+					classLettre='lettreMalPlacee';
+					tmp = tmp.replace(mot_propose.charAt(i));
+				}
+				else
+					{
+						classLettre='';
+						audio = new Audio("sound/mauvaiseLettre.wav");
+				}
+				delay=225*(i+1);
+				(function(s,delayTime,myCase,myClass,audioToPlay){
+	        		setTimeout( function(){audioToPlay.load();myCase.addClass(myClass);audioToPlay.play();}, delayTime);
+	    		})(i,delay,caseARemplir,classLettre,audio);
+		}
 			if(this.victoire(mot_propose)){
 				this.gestionVictoire();
 			}
