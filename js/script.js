@@ -162,6 +162,8 @@ $(document).ready(function(){
 		}
 	}
 
+	$("#mot").val("");
+
 	var motus;
 	var timer;
 	
