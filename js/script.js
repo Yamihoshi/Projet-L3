@@ -205,7 +205,8 @@ $(document).ready(function(){
 	{
 		if(event.keyCode>=65 && event.keyCode<=90 && !$("#mot").is(":focus"))
 		{
-			$("#mot").val($("#mot").val()+event.key.toUpperCase());
+			//$("#mot").val($("#mot").val()+event.key.toUpperCase());
+			$("#mot").focus();
 		}
 	});
 
