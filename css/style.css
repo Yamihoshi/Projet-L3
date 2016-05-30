@@ -26,7 +26,7 @@ th, td {
 	
 }
 .lettreMalPlacee{
-	background: linear-gradient(#ffb500, #d89900);/*DOIT ETRE CIRCULAIRE !!*/
+	background: linear-gradient(#ffb500, #d89900) !important; /*DOIT ETRE CIRCULAIRE !!*/
 } 
 .lettreNnormal{
     background: linear-gradient(#2eb2fc, #0268cc);
