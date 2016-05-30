@@ -63,6 +63,7 @@ $(document).ready(function(){
 
 		creerTableau(){
 			var str ="";
+			$('table tbody').append(str);
 			for(var j =0; j < this.essai; j++){
 				str += "<tr>";
 				for(var i = 0; i < this.taille; i++)
