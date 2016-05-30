@@ -85,19 +85,23 @@ $(document).ready(function(){
 			var delay=225;
 			for(var i = 0; i < this.taille; i++ ){
 
-			delay=225*(i+1);
-			(function(s,delayTime){
-        			setTimeout( function(){audio.load();audio.play();}, delayTime);
-    		})(i,delay);
-
 				var present_dans_le_mot = tmp.indexOf(mot_propose.charAt(i));
+				var caseARemplir=$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')');
+				var classLettre;
+
 				$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')').html(mot_propose.charAt(i));
 				if(this.mot.mot_a_trouver.charAt(i) === mot_propose.charAt(i))
-					$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')').addClass('lettreCorrect');
+					classLettre='lettreCorrect';
 				else if(present_dans_le_mot !== -1){
-					$('table tr:nth-child(' + (this.tentative  + 1) + ') td:nth-child('+ (i + 1) +')').addClass('lettreMalPlacee');
+					classLettre='lettreMalPlacee';
 					tmp = tmp.replace(mot_propose.charAt(i));
 				}
+
+				delay=225*(i+1);
+				(function(s,delayTime,myCase,myClass){
+	        		setTimeout( function(){audio.load();audio.play();myCase.addClass(myClass);}, delayTime);
+	    		})(i,delay,caseARemplir,classLettre);
+
 				console.log(mot_propose.charAt(i));
 			}
 		}
@@ -137,8 +141,14 @@ $(document).ready(function(){
 	var timer;
 	
 	$('#validerMot').click(function(){
+		clearInterval(timer);
 		motus.proposerMot($("#mot").text());
-		$("#mot").text("");
+			setTimeout(function()
+			{
+				$("#mot").text("");
+				$("#valTimer").text(8);
+				timer = setInterval(timerEvent, 1000);
+			},2000);
 	});
 
 	//var keyPressed=false; //pour stopper l'appui consécutif
@@ -178,12 +188,15 @@ $(document).ready(function(){
 
 		if(parseInt($(this).text())==0)
 		{
-			console.log("OK");
 			clearInterval(timer);
 			motus.proposerMot($("#mot").text());
-			$("#mot").text("");
-			$("#valTimer").text(8);
-			timer = setInterval(timerEvent, 1000);
+			setTimeout(function()
+			{
+				$("#mot").text("");
+				$("#valTimer").text(8);
+				timer = setInterval(timerEvent, 1000);
+			},2000);
+
 		}
 	});
 
