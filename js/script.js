@@ -81,7 +81,7 @@ $(document).ready(function(){
 
 		ajouterMotTableau(mot_propose){
 			var tmp = this.mot.mot_a_trouver;
-			var audio = new Audio("sound/bip.wav");
+			var audio;
 			var delay=225;
 			for(var i = 0; i < this.taille; i++ ){
 
@@ -91,16 +91,20 @@ $(document).ready(function(){
 
 				$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')').html(mot_propose.charAt(i));
 				if(this.mot.mot_a_trouver.charAt(i) === mot_propose.charAt(i))
+				{
+					audio = new Audio("sound/bienPlacee.wav");
 					classLettre='lettreCorrect';
+				}
 				else if(present_dans_le_mot !== -1){
+					audio = new Audio("sound/malPlacee.wav");
 					classLettre='lettreMalPlacee';
 					tmp = tmp.replace(mot_propose.charAt(i));
 				}
 
 				delay=225*(i+1);
-				(function(s,delayTime,myCase,myClass){
-	        		setTimeout( function(){audio.load();audio.play();myCase.addClass(myClass);}, delayTime);
-	    		})(i,delay,caseARemplir,classLettre);
+				(function(s,delayTime,myCase,myClass,audioToPlay){
+	        		setTimeout( function(){audioToPlay.load();myCase.addClass(myClass);audioToPlay.play();}, delayTime);
+	    		})(i,delay,caseARemplir,classLettre,audio);
 
 				console.log(mot_propose.charAt(i));
 			}
