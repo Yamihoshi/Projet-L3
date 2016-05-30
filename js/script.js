@@ -84,6 +84,11 @@ $(document).ready(function(){
 			var tmp = this.mot.mot_a_trouver;
 			var audio;
 			var delay=225;
+			for(var i = 0; i < this.taille; i++){
+				if(this.mot.mot_a_trouver.charAt(i) === mot_propose.charAt(i)){
+					tmp = tmp.replace(mot_propose.charAt(i));
+				}
+			}
 			for(var i = 0; i < this.taille; i++ ){
 
 				var present_dans_le_mot = tmp.indexOf(mot_propose.charAt(i));
@@ -93,11 +98,19 @@ $(document).ready(function(){
 				$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')').html(mot_propose.charAt(i));
 				if(this.mot.mot_a_trouver.charAt(i) === mot_propose.charAt(i))
 				{
-					console.log(" 1. " + this.mot.mot_a_trouver.charAt(i) + " 20. "+  mot_propose.charAt(i))
 					audio = new Audio("sound/bienPlacee.wav");
 					classLettre='lettreCorrect';
+				}
+				else if(present_dans_le_mot !== -1){
+					console.log(" 2. " + this.mot.mot_a_trouver.charAt(i) + " 20. "+  mot_propose.charAt(i))
+					audio = new Audio("sound/malPlacee.wav");
+					classLettre='lettreMalPlacee';
 					tmp = tmp.replace(mot_propose.charAt(i));
-
+				}
+				else
+				{
+					classLettre='';
+					audio = new Audio("sound/mauvaiseLettre.wav");
 				}
 
 				delay=225*(i+1);
@@ -106,26 +119,6 @@ $(document).ready(function(){
 	    		})(i,delay,caseARemplir,classLettre,audio);
 
 			}
-			for(var i = 0; i < this.taille; i++ ){
-				var present_dans_le_mot = tmp.indexOf(mot_propose.charAt(i));
-				var caseARemplir=$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')');
-				var classLettre ='lettreNormal';
-				if(present_dans_le_mot !== -1){
-					console.log(" 2. " + this.mot.mot_a_trouver.charAt(i) + " 20. "+  mot_propose.charAt(i))
-					audio = new Audio("sound/malPlacee.wav");
-					classLettre='lettreMalPlacee';
-					tmp = tmp.replace(mot_propose.charAt(i));
-				}
-				else
-					{
-						classLettre='';
-						audio = new Audio("sound/mauvaiseLettre.wav");
-				}
-				delay=225*(i+1);
-				(function(s,delayTime,myCase,myClass,audioToPlay){
-	        		setTimeout( function(){audioToPlay.load();myCase.addClass(myClass);audioToPlay.play();}, delayTime);
-	    		})(i,delay,caseARemplir,classLettre,audio);
-		}
 			if(this.victoire(mot_propose)){
 				this.gestionVictoire();
 			}
@@ -195,10 +188,8 @@ $(document).ready(function(){
 
 
 		/*TIMER*/
-		setTimeout(function()
-		{
-			timer = setInterval(timerEvent, 1000);
-		},250);
+		timer = setInterval(timerEvent, 1000);
+
 	});
 
 	$("body").keydown(function(event)
