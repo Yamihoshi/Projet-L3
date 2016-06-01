@@ -192,7 +192,18 @@ $(document).ready(function(){
 					this.ajouterMauvaisMot();
 				}
 			}
-			this.ajouterTentative(mot_propose)
+			this.ajouterTentative(mot_propose);
+
+
+			(function(motus){
+
+	        	setTimeout( function(){
+	        		$("tr").eq(motus.tentative).find('td').eq(0).addClass("lettreCorrect");
+					$("tr").eq(motus.tentative).find('td').eq(0).text(motus.mot.mot_a_trouver.charAt(0));
+	        	}, motus.taille*250);
+
+	    	})(this);
+
 		}
 		victoire(mot_propose){
 			return this.mot.motTrouve(mot_propose.toUpperCase());
