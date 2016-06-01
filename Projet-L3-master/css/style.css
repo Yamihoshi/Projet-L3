@@ -1,0 +1,99 @@
+body{
+    font-size: 1em;
+    background-color: white;
+}
+
+table {
+    border-collapse: collapse;
+    border:1px solid black;
+    color:white;
+    text-shadow: black 0.5px 1px; /* couleur,x,y*/
+    font-weight:bold;
+    text-align: center;
+    margin:auto;
+    font-size: 3em;
+}
+
+th, td {
+    border: 1px solid lightblue;
+   /* background-color:#1895e7;*/
+    width: 70px;
+	height: 70px;
+}
+
+.lettreCorrect{
+	background: linear-gradient(#fd6a49, #c53501)!important;
+	
+}
+.lettreMalPlacee{
+	background: linear-gradient(#ffb500, #d89900) !important; /*DOIT ETRE CIRCULAIRE !!*/
+} 
+.lettreNnormal{
+    background: linear-gradient(#2eb2fc, #0268cc);
+}
+#play
+{
+    width:60%;
+    height:80%;
+    margin:auto;
+}
+#config{
+    text-align: center;
+}
+#timer{
+    width: 150px;
+    height: 150px;
+    display: inline-block;
+    -webkit-animation: circle infinite 1s linear;
+    -moz-animation: circle infinite 1s linear;
+    -o-animation: circle infinite 1s linear;
+    animation: circle infinite 1s linear;
+    border: 2px solid red;
+    border-top-color: rgba(0, 0, 0, .2);
+    border-right-color: rgba(0, 0, 0, .2);
+    border-bottom-color: rgba(0, 0, 0, .2);
+    border-radius: 100%;
+}
+
+#mot
+{
+    width:80%;
+    margin-top:5%;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    font-weight:bold;
+    height:10vh;
+}
+
+.wrongWord
+{
+    background:black;
+}
+ #valTimer{
+    position: relative;
+    top: -45px;
+    left: -49.25%;
+    font-size: 9em;
+ }
+.wrapper{
+    display: inline-block;
+}
+@keyframes circle
+{
+    0%
+    {
+        -webkit-transform: rotate(0);
+            -ms-transform: rotate(0);
+             -o-transform: rotate(0);
+                transform: rotate(0);
+    }
+    100%
+    {
+        -webkit-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+             -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+
