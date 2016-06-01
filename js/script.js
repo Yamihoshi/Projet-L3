@@ -157,8 +157,14 @@ $(document).ready(function(){
 		}
 
 		gestionVictoire(){
-			$('#play').hide();
-			$('#config').show(250);
+			
+			var audio = new Audio("sound/sonVictoire.wav");
+			audio.volume = 0.4;
+			audio.play();
+			var delai = setTimeout(function(){
+				$('#play').hide();
+				$('#config').show(250);
+				}, 6000);
 		}
 	}
 
