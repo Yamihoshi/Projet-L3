@@ -41,6 +41,8 @@ $(document).ready(function(){
 		motTrouve(mot_propose){
 			if(this.mot_a_trouver === mot_propose)
 				return true;
+			else
+				return false;
 	}
 }
 	//Class motus
@@ -153,14 +155,14 @@ $(document).ready(function(){
 			this.ajouterTentative(mot_propose)
 		}
 		victoire(mot_propose){
-			return this.mot.motTrouve(mot_propose);
+			return this.mot.motTrouve(mot_propose.toUpperCase());
 		}
 
 		gestionVictoire(){
 			
 			var audio = new Audio("sound/sonVictoire.wav");
 			audio.volume = 0.4;
-			
+
 			setTimeout(function(){
 				audio.play();
 				}, this.taille*250);
@@ -179,6 +181,11 @@ $(document).ready(function(){
 	var timer;
 	
 	$('#validerMot').click(function(){
+
+		var win = 0;
+		if(motus.victoire($("#mot").val()))
+			win=1;
+
 		clearInterval(timer);
 		motus.proposerMot($("#mot").val());
 			setTimeout(function()
@@ -186,7 +193,7 @@ $(document).ready(function(){
 				$("#mot").val("");
 				$("#valTimer").text(8);
 				timer = setInterval(timerEvent, 1000);
-			},2000);
+			},motus.taille*250+150+win*3150);
 	});
 
 	//var keyPressed=false; //pour stopper l'appui consécutif
@@ -235,14 +242,20 @@ $(document).ready(function(){
 
 		if(parseInt($(this).text())==0)
 		{
+
+			var win = 0;
+			if(motus.victoire($("#mot").val()))
+				win=1;
+
 			clearInterval(timer);
 			motus.proposerMot($("#mot").val());
+			console.log(win,$("#mot").val(),motus.mot.mot_a_trouver);
 			setTimeout(function()
 			{
 				$("#mot").val("");
 				$("#valTimer").text(8);
 				timer = setInterval(timerEvent, 1000);
-			},2000);
+			},motus.taille*250+150+win*3150);
 
 		}
 	});
