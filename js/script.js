@@ -65,8 +65,8 @@ $(document).ready(function(){
 			console.log(mot_propose+ this.mot_a_trouver);
 			if(this.mot_a_trouver.length !== mot_propose.length)
 				return false;
-			else if(this.mot_a_trouver.charAt(0) !== mot_propose.charAt(0))
-				return false;
+			/*else if(this.mot_a_trouver.charAt(0) !== mot_propose.charAt(0))
+				return false;*/
 			//ajouter vérification ortho taln
 			else 
 				return true; 
@@ -97,7 +97,8 @@ $(document).ready(function(){
 
 		first_letter(letter) {
 			var letter = letter.toUpperCase();
-			var first_case_by_line = $('tr td:nth-child(1)');
+			//var first_case_by_line = $('tr td:nth-child(1)');
+			var first_case_by_line = $("tr").eq(0).find('td').eq(0);
 			$(first_case_by_line).addClass('lettreCorrect');
 			$(first_case_by_line).html(letter); 
 		}
