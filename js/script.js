@@ -179,6 +179,7 @@ $(document).ready(function(){
 
 	var motus;
 	var timer;
+	var timerValue;
 	
 	$('#validerMot').click(function(){
 
@@ -191,7 +192,7 @@ $(document).ready(function(){
 			setTimeout(function()
 			{
 				$("#mot").val("");
-				$("#valTimer").text(8);
+				$("#valTimer").text(timerValue);
 				timer = setInterval(timerEvent, 1000);
 			},motus.taille*250+150+win*3150);
 	});
@@ -206,6 +207,8 @@ $(document).ready(function(){
 		$('#config').hide();
 		$('#play').show(250);
 
+		timerValue=$('#timerSettings').val();
+		$("#valTimer").text(timerValue);
 
 		/*TIMER*/
 		timer = setInterval(timerEvent, 1000);
@@ -253,7 +256,7 @@ $(document).ready(function(){
 			setTimeout(function()
 			{
 				$("#mot").val("");
-				$("#valTimer").text(8);
+				$("#valTimer").text(timerValue);
 				timer = setInterval(timerEvent, 1000);
 			},motus.taille*250+150+win*3150);
 
