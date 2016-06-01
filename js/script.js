@@ -160,11 +160,16 @@ $(document).ready(function(){
 			
 			var audio = new Audio("sound/sonVictoire.wav");
 			audio.volume = 0.4;
-			audio.play();
-			var delai = setTimeout(function(){
+			
+			setTimeout(function(){
+				audio.play();
+				}, this.taille*250);
+
+			setTimeout(function()
+			{
 				$('#play').hide();
 				$('#config').show(250);
-				}, 6000);
+			},this.taille*250+3150) //taille*250 pour laisser le son des lettres + 3s pour jouer le son victoire
 		}
 	}
 
