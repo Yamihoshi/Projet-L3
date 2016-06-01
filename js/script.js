@@ -1,5 +1,5 @@
 "use strict";
-
+var dico=[];
 
 function timerEvent()
 {
@@ -9,6 +9,45 @@ function timerEvent()
 
 }
 
+function loadDictionnary()
+{
+     var txtFile = new XMLHttpRequest();
+     txtFile.open("GET", "dico.txt", true); //Si ça bug, remettre à false
+     txtFile.overrideMimeType('text/plain; charset=iso-8859-1');
+     txtFile.onreadystatechange = function () 
+     {
+	    if (txtFile.readyState === 4) 
+	    {  
+	        // Makes sure the document is ready to parse.
+	        if (txtFile.status === 200) 
+	        {  
+	             // Makes sure it's found the file.
+	            var wordList = txtFile.responseText.split('\n');
+	            for(var i=0;i<wordList.length;i++)
+	            {
+	            	dico[i]=wordList[i].trim();
+	            }
+
+	            //console.log(dico);
+	        }
+	    }
+	}
+
+	txtFile.send(null);
+}
+
+function getRandomWord(taille)
+{
+	var sousDico = dico.filter( function( element ) {
+  		return element.length == taille;
+	});
+
+	var index = Math.floor((Math.random() * sousDico.length) ); 
+
+	return sousDico[index];
+}
+
+loadDictionnary();//A placer avant document ready
 
 $(document).ready(function(){
 
@@ -268,5 +307,5 @@ $(document).ready(function(){
 
 		keyPressed=false;
 	});*/
-
+	console.log(getRandomWord(5));
 });
