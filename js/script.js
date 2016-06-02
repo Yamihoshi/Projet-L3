@@ -39,12 +39,12 @@ function loadDictionnary()
 function getRandomWord(taille)
 {
 	var sousDico = dico.filter( function( element ) {
-  		return element.length == taille;
+  		return breakUTF8Character(element).length == taille;
 	});
 
 	var index = Math.floor((Math.random() * sousDico.length) );
 
-	return sousDico[index];
+	return breakUTF8Character(sousDico[index]);
 }
 
 function breakUTF8Character(word)
@@ -341,6 +341,5 @@ $(document).ready(function(){
 	});*/
 	var word = getRandomWord(5);
 	console.log(word);
-	console.log(breakUTF8Character(word));
 
 });
