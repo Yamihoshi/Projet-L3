@@ -208,7 +208,7 @@ $(document).ready(function(){
 
 	        	setTimeout( function(){
 	        		motus.letterFind();
-	        	}, motus, taille*250);
+	        	}, motus.taille*250);
 
 	    	})(this);
 
