@@ -42,9 +42,21 @@ function getRandomWord(taille)
   		return element.length == taille;
 	});
 
-	var index = Math.floor((Math.random() * sousDico.length) ); 
+	var index = Math.floor((Math.random() * sousDico.length) );
 
 	return sousDico[index];
+}
+
+function breakUTF8Character(word)
+{
+	var str = word.toUpperCase();
+	str = str.replace(/[ÀÁÂÃÄÅ]/g,"A");
+    str = str.replace(/[ÈÉÊË]/g,"E");
+    str = str.replace(/[ÎÏ]/g,"I");
+    str = str.replace(/[ÔÖ]/g,"O");
+    str = str.replace(/[ÙÛÜ]/g,"U");
+    //.... all the rest
+    return str.replace(/[^A-Z]/gi,'');
 }
 
 loadDictionnary();//A placer avant document ready
@@ -327,5 +339,8 @@ $(document).ready(function(){
 
 		keyPressed=false;
 	});*/
-	console.log(getRandomWord(5));
+	var word = getRandomWord(5);
+	console.log(word);
+	console.log(breakUTF8Character(word));
+
 });
