@@ -101,7 +101,6 @@ $(document).ready(function(){
 			for(var indice of this.indiceLettreTrouve){
 				var case_motus = line.find('td').eq(indice);
 				$(case_motus).html(this.mot.mot_a_trouver.charAt(indice));
-				$(case_motus).addClass('lettreCorrect');
 			}
 		}
 
@@ -111,7 +110,7 @@ $(document).ready(function(){
 			for(var j =0; j < this.essai; j++){
 				str += "<tr>";
 				for(var i = 0; i < this.taille; i++)
-					str+='<td class="lettreNnormal"></td>';
+					str+='<td class="lettreNormal"></td>';
 				str+='</tr>';
 			}
 			$('table tbody').append(str);
