@@ -44,7 +44,7 @@ function getRandomWord(taille)
 
 	var index = Math.floor((Math.random() * sousDico.length) );
 
-	return breakUTF8Character(sousDico[index]);
+	return breakUTF8Character('AVION');
 }
 
 function breakUTF8Character(word)
@@ -63,6 +63,10 @@ loadDictionnary();//A placer avant document ready
 
 $(document).ready(function(){
 
+	function load() {
+		return new Typo("fr_FR");
+	}
+	var dictionary = load();
 	class MotCherche{
 		constructor(mot){
 			this.mot_a_trouver = mot || "AVION";
@@ -94,8 +98,8 @@ $(document).ready(function(){
 				return true;
 			else
 				return false;
+		}
 	}
-}
 	//Class motus
 	var Motus = class Motus{
 
@@ -334,6 +338,10 @@ $(document).ready(function(){
 		}
 	});
 
+
+
+	console.log(dictionary.check("ihuih"));
+
 	/*$("body").keyup(function(event)
 	{
 
@@ -341,5 +349,6 @@ $(document).ready(function(){
 	});*/
 	var word = getRandomWord(5);
 	console.log(word);
+
 
 });
