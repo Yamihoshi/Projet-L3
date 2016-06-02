@@ -93,14 +93,16 @@ $(document).ready(function(){
 			this.mot_deja_propose = [];
 			this.essai = nombre_essai;
 			this.taille = taille;
+			this.indiceLettreTrouve = [0];
 		}
 
-		first_letter(letter) {
-			var letter = letter.toUpperCase();
-			//var first_case_by_line = $('tr td:nth-child(1)');
-			var first_case_by_line = $("tr").eq(0).find('td').eq(0);
-			$(first_case_by_line).addClass('lettreCorrect');
-			$(first_case_by_line).html(letter); 
+		letterFind() {
+			var line = $("tr").eq(this.tentative);
+			for(var indice of this.indiceLettreTrouve){
+				var case_motus = line.find('td').eq(indice);
+				$(case_motus).html(this.mot.mot_a_trouver.charAt(indice));
+				$(case_motus).addClass('lettreCorrect');
+			}
 		}
 
 		creerTableau(){
@@ -113,7 +115,13 @@ $(document).ready(function(){
 				str+='</tr>';
 			}
 			$('table tbody').append(str);
-			this.first_letter(this.mot.mot_a_trouver.charAt(0)); 
+			this.letterFind(); 
+		}
+		ajouterIndiceLettreFind(indice){
+			if(this.indiceLettreTrouve.includes(indice))
+				return;
+			else
+				this.indiceLettreTrouve.push(indice);
 		}
 
  
@@ -142,6 +150,7 @@ $(document).ready(function(){
 				{
 					audio = new Audio("sound/bienPlacee.wav");
 					classLettre='lettreCorrect';
+					this.ajouterIndiceLettreFind(i);
 				}
 				else if(present_dans_le_mot !== -1){
 					console.log(" 2. " + this.mot.mot_a_trouver.charAt(i) + " 20. "+  mot_propose.charAt(i))
@@ -194,13 +203,12 @@ $(document).ready(function(){
 			}
 			this.ajouterTentative(mot_propose);
 
-
+			var taille = 100;
 			(function(motus){
 
 	        	setTimeout( function(){
-	        		$("tr").eq(motus.tentative).find('td').eq(0).addClass("lettreCorrect");
-					$("tr").eq(motus.tentative).find('td').eq(0).text(motus.mot.mot_a_trouver.charAt(0));
-	        	}, motus.taille*250);
+	        		motus.letterFind();
+	        	}, motus, taille*250);
 
 	    	})(this);
 
