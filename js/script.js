@@ -1,11 +1,20 @@
 "use strict";
 var dico=[];
+var timer=
+{
+	valeur:8,
+	horloge:8
+};
 
 function timerEvent()
-{
-	var temps = parseInt($("#valTimer").text());
-	if(temps>0)
-		$("#valTimer").text(temps-1).trigger("timerChange");
+{	
+	if(timer.horloge>0)
+	{
+		$("#valTimer").text(timer.horloge-1);
+		timer.horloge=timer.horloge-1;
+	}
+	else
+		$("#valTimer").trigger("timerChange");
 
 }
 
@@ -42,9 +51,9 @@ function getRandomWord(taille)
   		return breakUTF8Character(element).length == taille;
 	});
 
-	var index = Math.floor((Math.random() * sousDico.length) );
+	var index = Math.floor((Math.random() * sousDico.length-1) );
 
-	return breakUTF8Character('AVION');
+	return breakUTF8Character(sousDico[index]);
 }
 
 function breakUTF8Character(word)
@@ -59,6 +68,13 @@ function breakUTF8Character(word)
     return str.replace(/[^A-Z]/gi,'');
 }
 
+function resetTimer()
+{
+	/*
+		A COPIER D'EN BAS
+	*/
+}
+
 loadDictionnary();//A placer avant document ready
 
 $(document).ready(function(){
@@ -66,7 +82,9 @@ $(document).ready(function(){
 	function load() {
 		return new Typo("fr_FR");
 	}
+
 	var dictionary = load();
+
 	class MotCherche{
 		constructor(mot){
 			this.mot_a_trouver = mot || "AVION";
@@ -104,7 +122,8 @@ $(document).ready(function(){
 	var Motus = class Motus{
 
 		constructor(taille, nombre_essai){
-			this.mot = new MotCherche("AVION", 1);
+			//this.mot = new MotCherche("AVION", 1);
+			this.mot = new MotCherche(getRandomWord(taille));
 			this.tentative = 0;
 			this.mot_deja_propose = [];
 			this.essai = nombre_essai;
@@ -253,8 +272,8 @@ $(document).ready(function(){
 	$("#mot").val("");
 
 	var motus;
-	var timer;
-	var timerValue;
+
+	var timerEventHandler;
 	
 	$('#validerMot').click(function(){
 
@@ -262,17 +281,15 @@ $(document).ready(function(){
 		if(motus.victoire($("#mot").val()))
 			win=1;
 
-		clearInterval(timer);
+		clearInterval(timerEventHandler);
 		motus.proposerMot($("#mot").val());
+		$("#mot").val("");
 			setTimeout(function()
 			{
-				$("#mot").val("");
-				$("#valTimer").text(timerValue);
-				timer = setInterval(timerEvent, 1000);
+				$("#valTimer").text(timer.temps);
+				timerEventHandler = setInterval(timerEvent, 1000);
 			},motus.taille*250+150+win*3150);
 	});
-
-	//var keyPressed=false; //pour stopper l'appui consécutif
 
 	$('#config').on('click', 'button', function(){
 		var taille = parseInt($('#taille_mot').val());
@@ -282,11 +299,16 @@ $(document).ready(function(){
 		$('#config').hide();
 		$('#play').show(250);
 
-		timerValue=$('#timerSettings').val();
-		$("#valTimer").text(timerValue);
+		timer.temps=$('#timerSettings').val();
+		timer.horloge=timer.temps;
+		$("#valTimer").text(timer.temps);
 
 		/*TIMER*/
-		timer = setInterval(timerEvent, 1000);
+		timerEventHandler = setInterval(timerEvent, 1000);
+
+
+		console.log("Mot à trouver :",motus.mot.mot_a_trouver);
+		console.log("temps",timer.temps);
 
 	});
 
@@ -318,37 +340,23 @@ $(document).ready(function(){
 
 	$("#valTimer").bind("timerChange", function() {
 
-		if(parseInt($(this).text())==0)
-		{
-
 			var win = 0;
 			if(motus.victoire($("#mot").val()))
 				win=1;
 
-			clearInterval(timer);
+			clearInterval(timerEventHandler);
 			motus.proposerMot($("#mot").val());
-			console.log(win,$("#mot").val(),motus.mot.mot_a_trouver);
+			$("#mot").val("");
 			setTimeout(function()
 			{
-				$("#mot").val("");
-				$("#valTimer").text(timerValue);
-				timer = setInterval(timerEvent, 1000);
+				timer.horloge=timer.temps;
+				$("#valTimer").text(timer.horloge);
+				timerEventHandler = setInterval(timerEvent, 1000);
 			},motus.taille*250+150+win*3150);
-
-		}
 	});
 
 
 
-	console.log(dictionary.check("ihuih"));
-
-	/*$("body").keyup(function(event)
-	{
-
-		keyPressed=false;
-	});*/
-	var word = getRandomWord(5);
-	console.log(word);
-
+	console.log(dictionary.check("VOITURE"));
 
 });
