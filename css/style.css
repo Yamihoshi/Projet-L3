@@ -12,6 +12,7 @@ table {
     text-align: center;
     margin:auto;
     font-size: 3em;
+    display: inline-block;
 }
 
 th, td {
@@ -78,6 +79,7 @@ th, td {
  }
 .wrapper{
     display: inline-block;
+    vertical-align: top;
 }
 @keyframes circle
 {
