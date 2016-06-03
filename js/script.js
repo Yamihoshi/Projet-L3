@@ -6,6 +6,7 @@ var timer=
 	horloge:8
 };
 var timerEventHandler;
+var motus;
 
 
 function timerEvent()
@@ -72,9 +73,36 @@ function breakUTF8Character(word)
 
 function resetTimer()
 {
-	/*
-		A COPIER D'EN BAS
-	*/
+		var win = 0;
+		if(motus.victoire($("#mot").val()))
+			win=1;
+
+		clearInterval(timerEventHandler);
+		var delay=motus.taille*250+150+win*3150;
+
+		if(!motus.proposerMot($("#mot").val()))
+			delay=500;
+
+		$("#mot").val("");
+
+		if(!motus.defaite())
+		{
+			setTimeout(function()
+			{
+				timer.horloge=timer.temps;
+				$("#valTimer").text(timer.temps);
+				if(win==0)
+					timerEventHandler = setInterval(timerEvent, 1000);
+
+			},delay);
+		}
+		else
+		{
+				$('#play').hide();
+				//$('#config').show(250);
+
+				$("body").append('<div id="endGame">VOUS AVEZ PERDU<div><button id="newGame">REJOUER</button></div></div>');
+		}
 }
 
 loadDictionnary();//A placer avant document ready
@@ -221,19 +249,26 @@ $(document).ready(function(){
 		}
 
 		proposerMot(mot_propose){
+
+			var motAjoute=false;
+
 			if(typeof mot_propose =='undefined')
 				mot_propose="";
 			mot_propose = breakUTF8Character(mot_propose.toUpperCase());
 			if(this.mot.motTrouve(mot_propose))
+			{
 				console.log("victory"); // Add gestion
+				motAjoute=true;
+			}
 			if(this.mot_deja_propose.indexOf(mot_propose) !== -1){
 			 // gestion erreur
 			 console.log("lost");
-			 this.ajouterMauvaisMot(mot_propose); /* ????*/
+			 this.ajouterMauvaisMot(mot_propose);
 			}
 			else{
 				if(this.mot.verificationMot(mot_propose)){
 					this.ajouterMotTableau(mot_propose);
+					motAjoute=true;
 				}
 
 				else
@@ -248,14 +283,20 @@ $(document).ready(function(){
 				win=1;
 
 			var taille = 100;
-			(function(motus){
 
-	        	setTimeout( function(){
-	        		motus.letterFind();
-	        	}, motus.taille*250+3150*win);
+			if(motAjoute)
+			{
+				(function(motus){
 
-	    	})(this);
+		        	setTimeout( function(){
+		        		motus.letterFind();
+		        	}, motus.taille*250+3150*win);
 
+		    	})(this);
+	    	}
+
+
+	    	return motAjoute;
 		}
 		victoire(mot_propose){
 			return this.mot.motTrouve(breakUTF8Character(mot_propose.toUpperCase()));
@@ -289,36 +330,10 @@ $(document).ready(function(){
 	}
 
 	$("#mot").val("");
-
-	var motus;
 	
 	$('#validerMot').click(function(){
 
-		var win = 0;
-		if(motus.victoire($("#mot").val()))
-			win=1;
-
-		clearInterval(timerEventHandler);
-		motus.proposerMot($("#mot").val());
-		$("#mot").val("");
-		if(!motus.defaite())
-		{
-			setTimeout(function()
-			{
-				timer.horloge=timer.temps;
-				$("#valTimer").text(timer.temps);
-				if(win==0)
-					timerEventHandler = setInterval(timerEvent, 1000);
-
-			},motus.taille*250+150+win*3150);
-		}
-		else
-		{
-				$('#play').hide();
-				//$('#config').show(250);
-
-				$("body").append('<div id="endGame">VOUS AVEZ PERDU<div><button id="newGame">REJOUER</button></div></div>');
-		}
+		resetTimer();
 	});
 
 	$('#config').on('click', 'button', function(){
@@ -375,30 +390,7 @@ $(document).ready(function(){
 
 	$("#valTimer").bind("timerChange", function() {
 
-			var win = 0;
-			if(motus.victoire($("#mot").val()))
-				win=1;
-
-			clearInterval(timerEventHandler);
-			motus.proposerMot($("#mot").val());
-			$("#mot").val("");
-			if(!motus.defaite())
-			{
-				setTimeout(function()
-				{
-					timer.horloge=timer.temps;
-					$("#valTimer").text(timer.horloge);
-					if(win==0)
-						timerEventHandler = setInterval(timerEvent, 1000);
-				},motus.taille*250+150+win*3150);
-			}
-			else
-			{
-				$('#play').hide();
-				//$('#config').show(250);
-
-				$("body").append('<div id="endGame">VOUS AVEZ PERDU<div><button id="newGame">REJOUER</button></div></div>');
-			}
+		resetTimer();
 	});
 
 	$("body").on("click","#newGame",function()
