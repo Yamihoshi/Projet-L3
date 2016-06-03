@@ -243,16 +243,12 @@ $(document).ready(function(){
 			}
 			this.ajouterTentative(mot_propose);
 
-			var win = 0;
-			if(motus.victoire(mot_propose))
-				win=1;
-
 			var taille = 100;
 			(function(motus){
 
 	        	setTimeout( function(){
 	        		motus.letterFind();
-	        	}, motus.taille*250+3150*win);
+	        	}, motus.taille*250);
 
 	    	})(this);
 
