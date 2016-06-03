@@ -285,6 +285,7 @@ $(document).ready(function(){
 		$("#mot").val("");
 			setTimeout(function()
 			{
+				timer.horloge=timer.temps;
 				$("#valTimer").text(timer.temps);
 				timerEventHandler = setInterval(timerEvent, 1000);
 			},motus.taille*250+150+win*3150);
