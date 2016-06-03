@@ -41,15 +41,7 @@ header h1{
     margin:auto;
     text-align: center;
 }
-#config{
-	margin:auto;
-	border-radius:10px;
-    width:35%;
-	text-align:center;
-	margin-top:50px;
-	padding:15px 5px;
-	border:1px solid black;
-}
+
 
 .item
 {
@@ -57,16 +49,9 @@ header h1{
 	font-size:15px;
 }
 
-.item .titre
-{
-	margin-right:10px;
-}
 
-.icon
-{
-	background-color:lightgrey;
-	padding:6px;
-}
+
+
 
 #timer{
     width: 150px;
@@ -184,3 +169,16 @@ header h1{
     content: "\e9b9";
 }
 
+#config > div > div{
+    display: inline-table;
+}
+
+#config{
+    margin:auto;
+    border-radius:10px;
+    width:35%;
+    text-align:center;
+    margin-top:50px;
+    padding:15px 5px;
+    border:1px solid black;
+}
