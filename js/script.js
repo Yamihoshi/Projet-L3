@@ -334,7 +334,8 @@ $(document).ready(function(){
 		resetTimer();
 	});
 
-	$('#config').on('click', 'button', function(){
+	$('#config').on('submit', function(event){
+		event.preventDefault();
 		var taille = parseInt($('#taille_mot').val());
 		var nombre_essai = parseInt($('#nombre_essai').val());
 		motus = new Motus(taille , nombre_essai);
