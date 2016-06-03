@@ -251,6 +251,11 @@ $(document).ready(function(){
 			return this.mot.motTrouve(mot_propose.toUpperCase());
 		}
 
+		defaite()
+		{
+			return this.tentative==this.essai;
+		}
+
 		gestionVictoire(){
 			
 			var audio = new Audio("sound/sonVictoire.wav");
@@ -283,6 +288,8 @@ $(document).ready(function(){
 		clearInterval(timerEventHandler);
 		motus.proposerMot($("#mot").val());
 		$("#mot").val("");
+		if(!motus.defaite())
+		{
 			setTimeout(function()
 			{
 				timer.horloge=timer.temps;
@@ -291,6 +298,11 @@ $(document).ready(function(){
 					timerEventHandler = setInterval(timerEvent, 1000);
 
 			},motus.taille*250+150+win*3150);
+		}
+		else
+		{
+			alert("T'as perdu gros");
+		}
 	});
 
 	$('#config').on('click', 'button', function(){
@@ -349,13 +361,20 @@ $(document).ready(function(){
 			clearInterval(timerEventHandler);
 			motus.proposerMot($("#mot").val());
 			$("#mot").val("");
-			setTimeout(function()
+			if(!motus.defaite())
 			{
-				timer.horloge=timer.temps;
-				$("#valTimer").text(timer.horloge);
-				if(win==0)
-					timerEventHandler = setInterval(timerEvent, 1000);
-			},motus.taille*250+150+win*3150);
+				setTimeout(function()
+				{
+					timer.horloge=timer.temps;
+					$("#valTimer").text(timer.horloge);
+					if(win==0)
+						timerEventHandler = setInterval(timerEvent, 1000);
+				},motus.taille*250+150+win*3150);
+			}
+			else
+			{
+				alert("T'as perdu gros");
+			}
 	});
 
 
