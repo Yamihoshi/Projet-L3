@@ -209,21 +209,25 @@ $(document).ready(function(){
 			}
 		}
 
-		ajouterMauvaisMot()
+		ajouterMauvaisMot(mot_propose)
 		{
-			for(var i = 1; i < this.taille; i++ ){
+			for(var i = 0; i < this.taille; i++ ){
 				$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')').addClass("wrongWord");
+				if(typeof mot_propose[i] != 'undefined')
+					$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')').text(mot_propose[i]);
 			}
 		}
 
 		proposerMot(mot_propose){
+			if(typeof mot_propose =='undefined')
+				mot_propose="";
 			mot_propose = mot_propose.toUpperCase();
 			if(this.mot.motTrouve(mot_propose))
 				console.log("victory"); // Add gestion
 			if(this.mot_deja_propose.indexOf(mot_propose) !== -1){
 			 // gestion erreur
 			 console.log("lost");
-			 this.ajouterMauvaisMot(); /* ????*/
+			 this.ajouterMauvaisMot(mot_propose); /* ????*/
 			}
 			else{
 				if(this.mot.verificationMot(mot_propose)){
@@ -232,7 +236,7 @@ $(document).ready(function(){
 
 				else
 				{
-					this.ajouterMauvaisMot();
+					this.ajouterMauvaisMot(mot_propose);
 				}
 			}
 			this.ajouterTentative(mot_propose);

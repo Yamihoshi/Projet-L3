@@ -69,7 +69,7 @@ th, td {
 
 .wrongWord
 {
-    background:black;
+    /*background:black;*/
 }
  #valTimer{
     position: relative;
