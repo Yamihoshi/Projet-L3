@@ -333,6 +333,7 @@ $(document).ready(function(){
 	}
 
 	$("#mot").val("");
+	$("#validerMot").removeAttr("disabled");
 	
 	$('#validerMot').click(function(){
 
@@ -340,6 +341,7 @@ $(document).ready(function(){
 	});
 
 	$('#config').on('click', 'button', function(){
+		$("#mot").val("");
 		var taille = parseInt($('#taille_mot').val());
 		var nombre_essai = parseInt($('#nombre_essai').val());
 		motus = new Motus(taille , nombre_essai);
