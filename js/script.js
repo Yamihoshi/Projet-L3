@@ -287,7 +287,9 @@ $(document).ready(function(){
 			{
 				timer.horloge=timer.temps;
 				$("#valTimer").text(timer.temps);
-				timerEventHandler = setInterval(timerEvent, 1000);
+				if(win==0)
+					timerEventHandler = setInterval(timerEvent, 1000);
+
 			},motus.taille*250+150+win*3150);
 	});
 
@@ -351,7 +353,8 @@ $(document).ready(function(){
 			{
 				timer.horloge=timer.temps;
 				$("#valTimer").text(timer.horloge);
-				timerEventHandler = setInterval(timerEvent, 1000);
+				if(win==0)
+					timerEventHandler = setInterval(timerEvent, 1000);
 			},motus.taille*250+150+win*3150);
 	});
 
