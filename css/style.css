@@ -21,7 +21,9 @@ th, td {
     width: 70px;
 	height: 70px;
 }
-
+header h1{
+    text-align: center;
+}
 .lettreCorrect{
 	background: linear-gradient(#fd6a49, #c53501)!important;
 	
@@ -37,6 +39,7 @@ th, td {
     width:60%;
     height:80%;
     margin:auto;
+    text-align: center;
 }
 #config{
     text-align: center;
@@ -97,5 +100,63 @@ th, td {
              -o-transform: rotate(360deg);
                 transform: rotate(360deg);
     }
+}
+
+
+@font-face {
+    font-family: 'icomoon';
+    src:    url('fonts/icomoon.eot?yh6y09');
+    src:    url('fonts/icomoon.eot?yh6y09#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?yh6y09') format('truetype'),
+        url('fonts/icomoon.woff?yh6y09') format('woff'),
+        url('fonts/icomoon.svg?yh6y09#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-clock-o:before {
+    content: "\e900";
+}
+.icon-chronometer:before {
+    content: "\e901";
+}
+.icon-time:before {
+    content: "\e902";
+}
+.icon-alarmclock:before {
+    content: "\e903";
+}
+.icon-bomb:before {
+    content: "\e904";
+}
+.icon-book:before {
+    content: "\e91f";
+}
+.icon-clock:before {
+    content: "\e94e";
+}
+.icon-alarm:before {
+    content: "\e950";
+}
+.icon-stopwatch:before {
+    content: "\e952";
+}
+.icon-list-numbered:before {
+    content: "\e9b9";
 }
 
