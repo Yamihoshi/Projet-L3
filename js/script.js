@@ -270,6 +270,8 @@ $(document).ready(function(){
 			
 			var audio = new Audio("sound/sonVictoire.wav");
 			audio.volume = 0.4;
+			$("#mot").val("");
+			clearInterval(timerEventHandler);
 
 			setTimeout(function(){
 				audio.play();
@@ -278,9 +280,10 @@ $(document).ready(function(){
 			setTimeout(function()
 			{
 				$('#play').hide();
-				$('#config').show(250);
-				clearInterval(timerEventHandler);
-				$("#mot").val("");
+				//$('#config').show(250);
+				$("body").append('<div id="endGame">VOUS AVEZ GAGNE<div><button id="newGame">REJOUER</button></div></div>');
+
+
 			},this.taille*250+3150) //taille*250 pour laisser le son des lettres + 3s pour jouer le son victoire
 		}
 	}
@@ -311,9 +314,10 @@ $(document).ready(function(){
 		}
 		else
 		{
-			alert("T'as perdu gros");
-			$('#play').hide();
-			$('#config').show(250);
+				$('#play').hide();
+				//$('#config').show(250);
+
+				$("body").append('<div id="endGame">VOUS AVEZ PERDU<div><button id="newGame">REJOUER</button></div></div>');
 		}
 	});
 
@@ -390,10 +394,17 @@ $(document).ready(function(){
 			}
 			else
 			{
-				alert("T'as perdu gros");
 				$('#play').hide();
-				$('#config').show(250);
+				//$('#config').show(250);
+
+				$("body").append('<div id="endGame">VOUS AVEZ PERDU<div><button id="newGame">REJOUER</button></div></div>');
 			}
+	});
+
+	$("body").on("click","#newGame",function()
+	{
+		$("#endGame").remove();
+		$('#config').show(250);
 	});
 
 
