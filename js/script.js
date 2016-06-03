@@ -11,8 +11,11 @@ var motus;
 
 function timerEvent()
 {	
-	$("#valTimer").text(timer.horloge-1);
-	timer.horloge=timer.horloge-1;
+	if(timer.horloge>0)
+	{
+		$("#valTimer").text(timer.horloge-1);
+		timer.horloge=timer.horloge-1;
+	}
 
 	if(timer.horloge==0)
 		$("#valTimer").trigger("timerChange");
@@ -71,6 +74,8 @@ function breakUTF8Character(word)
 
 function resetTimer()
 {
+		$("#validerMot").attr("disabled","disabled");
+
 		var win = 0;
 		if(motus.victoire($("#mot").val()))
 			win=1;
@@ -91,7 +96,7 @@ function resetTimer()
 				$("#valTimer").text(timer.temps);
 				if(win==0)
 					timerEventHandler = setInterval(timerEvent, 1000);
-
+				$("#validerMot").removeAttr("disabled");
 			},delay);
 		}
 		else
@@ -302,7 +307,7 @@ $(document).ready(function(){
 
 		defaite()
 		{
-			return this.tentative==this.essai;
+			return this.tentative>=this.essai;
 		}
 
 		gestionVictoire(){
@@ -310,7 +315,7 @@ $(document).ready(function(){
 			var audio = new Audio("sound/sonVictoire.wav");
 			audio.volume = 0.4;
 			$("#mot").val("");
-			clearInterval(timerEventHandler);
+			//clearInterval(timerEventHandler);
 
 			setTimeout(function(){
 				audio.play();
@@ -328,6 +333,7 @@ $(document).ready(function(){
 	}
 
 	$("#mot").val("");
+	$("#validerMot").removeAttr("disabled");
 	
 	$('#validerMot').click(function(){
 
@@ -336,6 +342,7 @@ $(document).ready(function(){
 
 	$('#config').on('submit', function(event){
 		event.preventDefault();
+		$("#mot").val("");
 		var taille = parseInt($('#taille_mot').val());
 		var nombre_essai = parseInt($('#nombre_essai').val());
 		motus = new Motus(taille , nombre_essai);
@@ -365,9 +372,12 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#mot").keyup(function()
+	$("#mot").keyup(function(event)
 	{
 		this.value=breakUTF8Character(this.value).toUpperCase();
+
+		if(event.keyCode==13)
+			$("#validerMot").trigger("click");
 	});
 
 	/*$("body").keydown(function(event)
