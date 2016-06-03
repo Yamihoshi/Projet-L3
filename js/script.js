@@ -345,12 +345,11 @@ $(document).ready(function(){
 			//$("#mot").val($("#mot").val()+event.key.toUpperCase());
 			$("#mot").focus();
 		}
+	});
 
-		else if(event.keyCode<65 || event.keyCode>90)
-		{
-			//Rajouter les keycode de CTRL+W + ALT F4 + SUPP
-			event.preventDefault();
-		}
+	$("#mot").keyup(function()
+	{
+		this.value=breakUTF8Character(this.value).toUpperCase();
 	});
 
 	/*$("body").keydown(function(event)
