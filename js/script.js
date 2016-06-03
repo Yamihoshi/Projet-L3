@@ -136,7 +136,6 @@ $(document).ready(function(){
 			for(var indice of this.indiceLettreTrouve){
 				var case_motus = line.find('td').eq(indice);
 				$(case_motus).html(this.mot.mot_a_trouver.charAt(indice));
-				case_motus.addClass("lettreCorrect");
 			}
 		}
 
