@@ -5,6 +5,8 @@ var timer=
 	valeur:8,
 	horloge:8
 };
+var timerEventHandler;
+
 
 function timerEvent()
 {	
@@ -273,6 +275,8 @@ $(document).ready(function(){
 			{
 				$('#play').hide();
 				$('#config').show(250);
+				clearInterval(timerEventHandler);
+				$("#mot").val("");
 			},this.taille*250+3150) //taille*250 pour laisser le son des lettres + 3s pour jouer le son victoire
 		}
 	}
@@ -280,8 +284,6 @@ $(document).ready(function(){
 	$("#mot").val("");
 
 	var motus;
-
-	var timerEventHandler;
 	
 	$('#validerMot').click(function(){
 
@@ -306,6 +308,8 @@ $(document).ready(function(){
 		else
 		{
 			alert("T'as perdu gros");
+			$('#play').hide();
+			$('#config').show(250);
 		}
 	});
 
@@ -378,6 +382,8 @@ $(document).ready(function(){
 			else
 			{
 				alert("T'as perdu gros");
+				$('#play').hide();
+				$('#config').show(250);
 			}
 	});
 
