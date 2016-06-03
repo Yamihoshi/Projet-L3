@@ -223,7 +223,7 @@ $(document).ready(function(){
 		proposerMot(mot_propose){
 			if(typeof mot_propose =='undefined')
 				mot_propose="";
-			mot_propose = mot_propose.toUpperCase();
+			mot_propose = breakUTF8Character(mot_propose.toUpperCase());
 			if(this.mot.motTrouve(mot_propose))
 				console.log("victory"); // Add gestion
 			if(this.mot_deja_propose.indexOf(mot_propose) !== -1){
@@ -258,7 +258,7 @@ $(document).ready(function(){
 
 		}
 		victoire(mot_propose){
-			return this.mot.motTrouve(mot_propose.toUpperCase());
+			return this.mot.motTrouve(breakUTF8Character(mot_propose.toUpperCase()));
 		}
 
 		defaite()
@@ -344,6 +344,12 @@ $(document).ready(function(){
 		{
 			//$("#mot").val($("#mot").val()+event.key.toUpperCase());
 			$("#mot").focus();
+		}
+
+		else if(event.keyCode<65 || event.keyCode>90)
+		{
+			//Rajouter les keycode de CTRL+W + ALT F4 + SUPP
+			event.preventDefault();
 		}
 	});
 
