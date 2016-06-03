@@ -371,9 +371,12 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#mot").keyup(function()
+	$("#mot").keyup(function(event)
 	{
 		this.value=breakUTF8Character(this.value).toUpperCase();
+
+		if(event.keyCode==13)
+			$("#validerMot").trigger("click");
 	});
 
 	/*$("body").keydown(function(event)
