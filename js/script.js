@@ -11,12 +11,10 @@ var motus;
 
 function timerEvent()
 {	
-	if(timer.horloge>0)
-	{
-		$("#valTimer").text(timer.horloge-1);
-		timer.horloge=timer.horloge-1;
-	}
-	else
+	$("#valTimer").text(timer.horloge-1);
+	timer.horloge=timer.horloge-1;
+
+	if(timer.horloge==0)
 		$("#valTimer").trigger("timerChange");
 
 }
