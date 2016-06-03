@@ -23,10 +23,16 @@
     
     <div id ="config" class="form-inline">
       <div class="input-group">
+        <span class="input-group-addon"><span class="icon-list-numbered" aria-hidden="true"></span></span>
+        <input type="number" class="form-control" id="nombre_essai" placeholder="Nombre de tentative" minlength="6" maxlength="10" value="7">
       </div>
       <div class="input-group">
+        <span class="input-group-addon"><span class="icon-bomb" aria-hidden="true"></span></span>
+        <input type="number" class="form-control" id="taille_mot" placeholder="Taille du mot" minlength="6" maxlength="10" value="5">
       </div>
       <div class="input-group">
+        <span class="input-group-addon"><span class="icon-time" aria-hidden="true"></span></span>
+        <input type="number" class="form-control" id="timerSettings" placeholder="Nombre de seconde entre chaque tentative" minlength="8" maxlength="30" value="8">
       </div>
       <button type="button" class="btn btn-default">Jouer !</button>
     </div>
