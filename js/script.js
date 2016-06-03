@@ -51,7 +51,7 @@ function getRandomWord(taille)
   		return breakUTF8Character(element).length == taille;
 	});
 
-	var index = Math.floor((Math.random() * sousDico.length-1) );
+	var index = Math.floor((Math.random() * (sousDico.length-1)) );
 
 	return breakUTF8Character(sousDico[index]);
 }
