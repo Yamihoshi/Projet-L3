@@ -22,6 +22,7 @@ th, td {
    /* background-color:#1895e7;*/
     width: 70px;
 	height: 70px;
+    text-shadow: 2px 2px 4px #000000;
 }
 header h1{
     text-align: center;
@@ -187,9 +188,8 @@ img{
 #config{
     margin:auto;
     border-radius:10px;
-    width:35%;
+    width:70%;
     text-align:center;
     margin-top:50px;
     padding:15px 5px;
-    border:1px solid black;
 }
