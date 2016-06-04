@@ -103,6 +103,7 @@ function resetTimer()
 		{
 				$('#play').hide();
 				//$('#config').show(250);
+				
 
 				$("body").append('<div id="endGame">VOUS AVEZ PERDU<div><button id="newGame">REJOUER</button></div></div>');
 		}
@@ -338,6 +339,16 @@ $(document).ready(function(){
 			{
 				$('#play').hide();
 				//$('#config').show(250);
+				
+				var pseudo=$("#pseudo").val();
+				var upScore=1;
+				$.get("ajax.php",
+						{Pseudo:pseudo,Up:upScore},
+						function(res){
+					//si vous voulez mettre qqchose
+				}
+		)
+				
 				$("body").append('<div id="endGame">VOUS AVEZ GAGNE<div><button id="newGame">REJOUER</button></div></div>');
 
 
@@ -373,6 +384,15 @@ $(document).ready(function(){
 
 		console.log("Mot à trouver :",motus.mot.mot_a_trouver);
 		console.log("temps",timer.temps);
+		
+		var pseudo=$("#pseudo").val();
+		var newUser=1;
+		$.post("ajax.php",
+				{Pseudo:pseudo,User:newUser},
+				function(res){
+					//si vous voulez mettre qqchose
+				}
+		)
 
 	});
 
@@ -420,7 +440,14 @@ $(document).ready(function(){
 		$("#endGame").remove();
 		$('#config').show(250);
 	});
-
+	
+	var highScore=1;
+	$.get("ajax.php",
+		{highScore:highScore},
+		function(res){
+			$("#score").append(res);
+		}
+	);
 
 
 	//console.log(dictionary.check("VOITURE"));
