@@ -99,7 +99,7 @@ function resetTimer()
 				$("#validerMot").removeAttr("disabled");
 			},delay);
 		}
-		else
+		else if(win==0)
 		{
 				$('#play').hide();
 				//$('#config').show(250);
