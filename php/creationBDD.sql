@@ -3,5 +3,6 @@ CREATE TABLE score
 	id INT NOT NULL AUTO_INCREMENT,
 	pseudonyme VARCHAR(20) NOT NULL,
 	score INT NOT NULL,
+	longueur_mot INT NOT NULL,
 	PRIMARY KEY (id)
 );

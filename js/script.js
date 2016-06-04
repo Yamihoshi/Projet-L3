@@ -380,7 +380,7 @@ $(document).ready(function(){
 	{
 		pseudo=$("#pseudo").val();
 
-		$.post("php/ajax.php",{Pseudo:pseudo,User:true,score:score},function(res){
+		$.post("php/ajax.php",{Pseudo:pseudo,User:true,score:score,longueur_mot:motus.taille},function(res){
 			
 			$.get("php/ajax.php",{highScore:true},function(res){
 				$("#endGame").html('<button id="newGame">Rejouer</button>');

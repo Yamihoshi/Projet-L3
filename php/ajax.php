@@ -4,7 +4,7 @@
 
 	if(!empty($_POST["Pseudo"]) && !empty($_POST["User"]))
 	{
-		newJoueur($db, $_POST["Pseudo"],0);
+		newJoueur($db, $_POST["Pseudo"],$_POST['score'],$_POST['longueur_mot']);
 	
 	}
 	

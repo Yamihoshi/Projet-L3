@@ -2,11 +2,13 @@
 
 	require_once("connexionBDD.php");
 
-	function newJoueur($bdd, $pseudonyme,$score){
+	function newJoueur($bdd, $pseudonyme,$score,$longueur_mot){
 		
-		$req=$bdd->prepare('INSERT INTO score (pseudonyme,score) VALUES (:pseudonyme,:score);');
+		$req=$bdd->prepare('INSERT INTO score (pseudonyme,score,longueur_mot) VALUES (:pseudonyme,:score,:length);');
 		$req->bindValue(':pseudonyme',$pseudonyme);
 		$req->bindValue(':score',$score);
+		$req->bindValue(':length',$longueur_mot);
+
 
 		
 		$req->execute();
