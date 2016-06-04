@@ -24,7 +24,7 @@
 	}
 
 	function highscore($bdd){
-		$req=$bdd->prepare('SELECT pseudonyme, score from score order by score desc LIMIT 20 ;');
+		$req=$bdd->prepare('SELECT * from score order by score desc LIMIT 20 ;');
 		$req->execute();
 
 		echo "PSEUDONYME|SCORE|LONGUEUR DU MOT";
