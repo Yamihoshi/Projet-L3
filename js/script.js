@@ -13,7 +13,7 @@ function timerEvent()
 {	
 	if(timer.horloge>0)
 	{
-		$("#valTimer").text(timer.horloge-1);
+		$("#valTimer").html(timer.horloge-1 +"&nbsp;");
 		timer.horloge=timer.horloge-1;
 	}
 
@@ -93,7 +93,7 @@ function resetTimer()
 			setTimeout(function()
 			{
 				timer.horloge=timer.temps;
-				$("#valTimer").text(timer.temps);
+				$("#valTimer").html(timer.temps + "&nbsp;");
 				if(win==0)
 					timerEventHandler = setInterval(timerEvent, 1000);
 				$("#validerMot").removeAttr("disabled");
@@ -116,7 +116,7 @@ $(document).ready(function(){
 		return new Typo("fr_FR");
 	}
 
-	var dictionary = load();
+	//var dictionary = load();
 
 	class MotCherche{
 		constructor(mot){
@@ -365,7 +365,7 @@ $(document).ready(function(){
 
 		timer.temps=$('#timerSettings').val();
 		timer.horloge=timer.temps;
-		$("#valTimer").text(timer.temps);
+		$("#valTimer").html(timer.temps + "&nbsp;");
 
 		/*TIMER*/
 		timerEventHandler = setInterval(timerEvent, 1000);

@@ -9,42 +9,51 @@
   </head>
   <body>
     <header><h1>Motus</h1></header>
-    <div id="play" class="collapse">
-    <div class="wrapper"><span id="timer"></span><span id="valTimer">8</span></div>
-    <table>
-      <tbody>
-      </tbody>
-    </table>
-    <div class="form-group">
-      <input  class="form-control" type="text" id="mot">
+    <div class="container">
+    	<div class="row">
+	    <div id="play" class="collapse col-sm-12">
+	    	<div class="col-sm-3 vcenter">
+		    	<img src="img/luluco.png">
+			    <div class="wrapper"><span id="timer"></span><span id="valTimer">8</span></div>
+		    </div>
+		    <main class="col-sm-8">
+		    <table>
+		      <tbody>
+		      </tbody>
+		    </table>
+		    </main>
+		    <div class="form-group">
+		      <input  class="form-control" type="text" id="mot">
+		    </div>
+		    <button class="btn btn-danger" id="validerMot">Valider</button>
+	    </div>
+	    
+	    <form id ="config" class="form-horizontal">
+	      <div class="form-group">
+	        <label for="nombre_essai" class="col-sm-2 control-label">Nombre d'essai</label>
+	        <div class="col-sm-10">
+	          <span class="input-group-addon icon-list-numbered" aria-hidden="true"></span>
+	          <input type="number" placeholder="Nombre d'essai" class="form-control" id="nombre_essai" min="6" max = "10" value="7" required  title="6 à 10">
+	        </div>
+	      </div>
+	      <div class="form-group">
+	      <label for="taille_mot" class="col-sm-2 control-label">Taille du mot</label>
+	        <div class="col-sm-10">
+	          <span class="input-group-addon"><span class="icon-bomb" aria-hidden="true"></span></span>
+	          <input type="number" placeholder="Taille du mot" class="form-control" id="taille_mot" min="6" max="10" value="7" required  title="6 à 10">
+	        </div>
+	      </div>
+	      <div class="form-group">
+	        <label for="timerSettings" class="col-sm-2 control-label">Durée</label>
+	        <div class="col-sm-10">
+	          <span class="input-group-addon"><span class="icon-time" aria-hidden="true"></span></span>
+	          <input type="number" placeholder="Durée" class="form-control" id="timerSettings" min="8" max="30" value="8" required>
+	        </div>
+	      </div>
+	      <button type="submit" class="btn btn-danger">Jouer !</button>
+	    </form>
+	    </div>
     </div>
-    <button class="btn btn-default" id="validerMot">Valider</button>
-    </div>
-    
-    <form id ="config" class="form-horizontal">
-      <div class="form-group">
-        <label for="nombre_essai" class="col-sm-2 control-label">Nombre d'essai</label>
-        <div class="col-sm-10">
-          <span class="input-group-addon icon-list-numbered" aria-hidden="true"></span>
-          <input type="number" placeholder="Nombre d'essai" class="form-control" id="nombre_essai" min="6" max = "10" value="7" required  title="6 à 10">
-        </div>
-      </div>
-      <div class="form-group">
-      <label for="taille_mot" class="col-sm-2 control-label">Taille du mot</label>
-        <div class="col-sm-10">
-          <span class="input-group-addon"><span class="icon-bomb" aria-hidden="true"></span></span>
-          <input type="number" placeholder="Taille du mot" class="form-control" id="taille_mot" min="6" max="10" value="7" required  title="6 à 10">
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="timerSettings" class="col-sm-2 control-label">Durée</label>
-        <div class="col-sm-10">
-          <span class="input-group-addon"><span class="icon-time" aria-hidden="true"></span></span>
-          <input type="number" placeholder="Durée" class="form-control" id="timerSettings" min="8" max="30" value="8" required>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-default">Jouer !</button>
-    </form>
     <script src="js/jquery-1.12.3.min.js"></script>
     <script src="js/typo/typo.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/script.js"></script>
