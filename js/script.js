@@ -423,6 +423,6 @@ $(document).ready(function(){
 
 
 
-	console.log(dictionary.check("VOITURE"));
+	//console.log(dictionary.check("VOITURE"));
 
 });
