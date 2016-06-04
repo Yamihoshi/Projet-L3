@@ -166,6 +166,12 @@ $(document).ready(function(){
 
 		letterFind() {
 			var line = $("tr").eq(this.tentative);
+
+			for(var i=0;i<this.taille;i++)
+			{
+				line.find('td').eq(i).text("-");
+			}
+
 			for(var indice of this.indiceLettreTrouve){
 				var case_motus = line.find('td').eq(indice);
 				$(case_motus).html(this.mot.mot_a_trouver.charAt(indice));
@@ -248,6 +254,8 @@ $(document).ready(function(){
 				$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')').addClass("wrongWord");
 				if(typeof mot_propose[i] != 'undefined')
 					$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')').text(mot_propose[i]);
+				else
+					$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')').text("-");
 			}
 		}
 

@@ -13,6 +13,7 @@ table {
     margin:auto;
     font-size: 3em;
     display: inline-block;
+    background: linear-gradient(#2eb2fc, #0268cc);
 }
 
 th, td {
@@ -29,6 +30,7 @@ header h1{
 	
 }
 .lettreMalPlacee{
+    border-radius: 100%;
 	background: linear-gradient(#ffb500, #d89900) !important; /*DOIT ETRE CIRCULAIRE !!*/
 } 
 .lettreNormal{
