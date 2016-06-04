@@ -7,6 +7,7 @@ var timer=
 };
 var timerEventHandler;
 var motus;
+var pseudo;
 
 
 function timerEvent()
@@ -74,6 +75,8 @@ function breakUTF8Character(word)
 
 function resetTimer()
 {
+		console.log("resetTimer");
+
 		$("#validerMot").attr("disabled","disabled");
 
 		var win = 0;
@@ -95,17 +98,19 @@ function resetTimer()
 				timer.horloge=timer.temps;
 				$("#valTimer").html(timer.temps + "&nbsp;");
 				if(win==0)
+				{
 					timerEventHandler = setInterval(timerEvent, 1000);
-				$("#validerMot").removeAttr("disabled");
+					$("#validerMot").removeAttr("disabled");
+				}
 			},delay);
 		}
 		else if(win==0)
 		{
-				$('#play').hide();
-				//$('#config').show(250);
+			$('#play').hide();
+			//$('#config').show(250);
 				
-
-				$("body").append('<div id="endGame">VOUS AVEZ PERDU<div><button id="newGame">REJOUER</button></div></div>');
+			//$("body").append('<div><button id="newGame">REJOUER</button></div></div>');
+			$("body").append('<div id="endGame"><div>VOUS AVEZ PERDU</div><div>Le mot était :'+motus.mot.mot_a_trouver.toUpperCase()+'</div><div><input type="text" placeholder="Pseudonyme" id="pseudo" /><button id="showHighscore">Enregistrer votre score</button><button id="skipHighscore">Passez cette étape</button></div></div>');
 		}
 }
 
@@ -171,6 +176,7 @@ $(document).ready(function(){
 			for(var i=0;i<this.taille;i++)
 			{
 				line.find('td').eq(i).text("-");
+				console.log("tentative",this.tentative);
 			}
 
 			for(var indice of this.indiceLettreTrouve){
@@ -270,9 +276,10 @@ $(document).ready(function(){
 			if(this.mot.motTrouve(mot_propose))
 			{
 				console.log("victory"); // Add gestion
+				this.ajouterMotTableau(mot_propose);
 				motAjoute=true;
 			}
-			if(this.mot_deja_propose.indexOf(mot_propose) !== -1){
+			else if(this.mot_deja_propose.indexOf(mot_propose) !== -1){
 			 // gestion erreur
 			 console.log("lost");
 			 this.ajouterMauvaisMot(mot_propose);
@@ -288,30 +295,35 @@ $(document).ready(function(){
 					this.ajouterMauvaisMot(mot_propose);
 				}
 			}
-			this.ajouterTentative(mot_propose);
 
 			var win = 0;
 			if(motus.victoire(mot_propose))
 				win=1;
 
+			if(win==0)
+				this.ajouterTentative(mot_propose);
+
 			var taille = 100;
 
-			if(motAjoute)
+			if(win==0)
 			{
-				(function(motus){
 
-		        	setTimeout( function(){
-		        		motus.letterFind();
-		        	}, motus.taille*250+3150*win);
+				if(motAjoute)
+				{
+					(function(motus){
 
-		    	})(this);
-	    	}
+			        	setTimeout( function(){
+			        		motus.letterFind();
+			        	}, motus.taille*250);
 
-	    	else
-	    	{
-	    		this.letterFind();
-	    	}
+			    	})(this);
+		    	}
 
+		    	else
+		    	{
+		    		this.letterFind();
+		    	}
+		    }
 
 	    	return motAjoute;
 		}
@@ -337,20 +349,18 @@ $(document).ready(function(){
 
 			setTimeout(function()
 			{
-				$('#play').hide();
+				//$('#play').hide();
 				//$('#config').show(250);
+				motus = new Motus(motus.taille,motus.essai);
+				motus.creerTableau();
+				timer.horloge=timer.temps;
+				$("#valTimer").html(timer.temps + "&nbsp;");
+				setTimeout( function(){
+					timerEventHandler = setInterval(timerEvent, 1000);
+					$("#validerMot").removeAttr("disabled");
+				},1000);
 				
-				var pseudo=$("#pseudo").val();
-				var upScore=1;
-				$.get("ajax.php",
-						{Pseudo:pseudo,Up:upScore},
-						function(res){
-					//si vous voulez mettre qqchose
-				}
-		)
-				
-				$("body").append('<div id="endGame">VOUS AVEZ GAGNE<div><button id="newGame">REJOUER</button></div></div>');
-
+				//$("body").append('<div id="endGame">VOUS AVEZ GAGNE<div><button id="newGame">REJOUER</button></div></div>');
 
 			},this.taille*250+3150) //taille*250 pour laisser le son des lettres + 3s pour jouer le son victoire
 		}
@@ -363,12 +373,38 @@ $(document).ready(function(){
 		resetTimer();
 	});
 
+	$("body").on("click","#showHighscore",function()
+	{
+		pseudo=$("#pseudo").val();
+
+		$.post("php/ajax.php",{Pseudo:pseudo,User:true,score:0},function(res){
+			
+			$.get("php/ajax.php",{highScore:true},function(res){
+				$("#endGame").html('<button id="newGame">Rejouer</button>');
+				$("#endGame").append(res);
+			});
+		});
+	});
+
+	$("body").on("click","#newGame",function()
+	{
+		$("#endGame").remove();
+		$('#config').show(250);
+	});
+
+	$("body").on("click","#skipHighscore",function()
+	{
+		$("#endGame").remove();
+		$('#config').show(250);
+	});
+
 	$('#config').on('submit', function(event){
 		event.preventDefault();
 		$("#mot").val("");
 		$("#validerMot").removeAttr("disabled");
 		var taille = parseInt($('#taille_mot').val());
 		var nombre_essai = parseInt($('#nombre_essai').val());
+
 		motus = new Motus(taille , nombre_essai);
 		motus.creerTableau();
 		$('#config').hide();
@@ -385,15 +421,6 @@ $(document).ready(function(){
 		console.log("Mot à trouver :",motus.mot.mot_a_trouver);
 		console.log("temps",timer.temps);
 		
-		var pseudo=$("#pseudo").val();
-		var newUser=1;
-		$.post("ajax.php",
-				{Pseudo:pseudo,User:newUser},
-				function(res){
-					//si vous voulez mettre qqchose
-				}
-		)
-
 	});
 
 	$("body").keydown(function(event)
@@ -441,15 +468,6 @@ $(document).ready(function(){
 		$('#config').show(250);
 	});
 	
-	var highScore=1;
-	$.get("ajax.php",
-		{highScore:highScore},
-		function(res){
-			$("#score").append(res);
-		}
-	);
-
-
 	//console.log(dictionary.check("VOITURE"));
 
 });

@@ -1,11 +1,12 @@
 <?php
 
-	require("connexionBDD.php");
+	require_once("connexionBDD.php");
 
-	function newJoueur($bdd, $pseudonyme){
+	function newJoueur($bdd, $pseudonyme,$score){
 		
-		$req=$bdd->prepare('INSERT INTO score (pseudonyme,score) VALUES (:pseudonyme,0);');
+		$req=$bdd->prepare('INSERT INTO score (pseudonyme,score) VALUES (:pseudonyme,:score);');
 		$req->bindValue(':pseudonyme',$pseudonyme);
+		$req->bindValue(':score',$score);
 
 		
 		$req->execute();
@@ -21,15 +22,13 @@
 	}
 
 	function highscore($bdd){
-		$req=$bdd->prepare('SELECT  pseudonyme, score from score order by score desc LIMIT 20 ;');
+		$req=$bdd->prepare('SELECT pseudonyme, score from score order by score desc LIMIT 20 ;');
 		$req->execute();
 
-		$reponse="PSEUDONYME|SCORE";
+		echo "PSEUDONYME|SCORE";
 		while($rep=$req->fetch(PDO::FETCH_ASSOC)){
-			$reponse=$reponse+"<p>".$rep[pseudonyme]."|".$rep[score]."</p>";
+			echo "<p>".$rep['pseudonyme']."|".$rep['score']."</p>";
 		}
-		
-		echo json_encode($reponse);
 	}
 
 

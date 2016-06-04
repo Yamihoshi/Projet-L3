@@ -1,7 +1,7 @@
 CREATE TABLE score
 (
 	id INT NOT NULL AUTO_INCREMENT,
-	pseudonyme VARCHAR(20) NOT NULL unique,
+	pseudonyme VARCHAR(20) NOT NULL,
 	score INT NOT NULL,
 	PRIMARY KEY (id)
 );

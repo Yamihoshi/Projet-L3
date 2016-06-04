@@ -1,21 +1,16 @@
 <?php
 
 	require("fonctions.php");
-	require("connexionBDD.php");
 
-	$pseudo=$_POST["Pseudo"];
-	$newUser=$_POST["User"];
-	$up=$_GET["Up"];
-	$affiche=$_GET["highScore"];
-
-	if(isset($pseudo) and trim($pseudo)!='' and isset($newUser)){
-		newJoueur($bdd, $pseudo, $val);
+	if(!empty($_POST["Pseudo"]) && !empty($_POST["User"]))
+	{
+		newJoueur($db, $_POST["Pseudo"],0);
 	
-	}else if (isset($up)){
-		upScore($bdd, $pseudo);
+	}
 	
-	}else if(isset($affiche)){
-		highscore($bdd);
+	else if(!empty($_GET["highScore"]))
+	{
+		highscore($db);
 	}
 		
 
