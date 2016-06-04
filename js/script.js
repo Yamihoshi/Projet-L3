@@ -8,6 +8,7 @@ var timer=
 var timerEventHandler;
 var motus;
 var pseudo;
+var score;
 
 
 function timerEvent()
@@ -341,6 +342,7 @@ $(document).ready(function(){
 			var audio = new Audio("sound/sonVictoire.wav");
 			audio.volume = 0.4;
 			$("#mot").val("");
+			score++;
 			//clearInterval(timerEventHandler);
 
 			setTimeout(function(){
@@ -377,7 +379,7 @@ $(document).ready(function(){
 	{
 		pseudo=$("#pseudo").val();
 
-		$.post("php/ajax.php",{Pseudo:pseudo,User:true,score:0},function(res){
+		$.post("php/ajax.php",{Pseudo:pseudo,User:true,score:score},function(res){
 			
 			$.get("php/ajax.php",{highScore:true},function(res){
 				$("#endGame").html('<button id="newGame">Rejouer</button>');
@@ -407,6 +409,7 @@ $(document).ready(function(){
 
 		motus = new Motus(taille , nombre_essai);
 		motus.creerTableau();
+		score=0;
 		$('#config').hide();
 		$('#play').show(250);
 
