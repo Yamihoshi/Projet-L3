@@ -343,6 +343,7 @@ $(document).ready(function(){
 			audio.volume = 0.4;
 			$("#mot").val("");
 			score++;
+			$("#scoreValue").text(score);
 			//clearInterval(timerEventHandler);
 
 			setTimeout(function(){
