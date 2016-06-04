@@ -306,6 +306,11 @@ $(document).ready(function(){
 		    	})(this);
 	    	}
 
+	    	else
+	    	{
+	    		this.letterFind();
+	    	}
+
 
 	    	return motAjoute;
 		}
