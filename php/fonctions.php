@@ -27,10 +27,19 @@
 		$req=$bdd->prepare('SELECT * from score order by score desc LIMIT 20 ;');
 		$req->execute();
 
-		echo "PSEUDONYME|SCORE|LONGUEUR DU MOT";
+		$table = '<table class="table">
+			<thead>
+				<tr>
+					<th>Pseudonyme</th>
+					<th>Score</th>
+					<th>Longueur du mot</th>
+				</tr>
+			</thead><tbody>';
 		while($rep=$req->fetch(PDO::FETCH_ASSOC)){
-			echo "<p>".$rep['pseudonyme']."|".$rep['score'].$rep['longueur_mot']."</p>";
+			$table+= "<tr><td>".$rep['pseudonyme']."</td><td>".$rep['score']. "</td><td>" .$rep['longueur_mot']."</td></tr>";
 		}
+		$table += "</tbody></table>";
+		echo $table;
 	}
 
 
