@@ -56,7 +56,9 @@ header h1{
 
 .wrap-left{display: inline-table;}
 
-
+label{
+    font-size: 1.25em;
+}
 
 
 #timer{
