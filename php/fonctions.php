@@ -15,14 +15,6 @@
 		
 	}
 
-	//ptt a suppr suivant ce qu'on fait
-	function upScore($bdd, $pseudonyme){
-		$req=$bdd->prepare('UPDATE score SET score=score+1 where pseudonyme=:pseudonyme;');
-		$req->bindValue(':pseudonyme',$pseudonyme);
-		
-		$req->execute();
-	}
-
 	function highscore($bdd){
 		$req=$bdd->prepare('SELECT * from score order by score desc LIMIT 20 ;');
 		$req->execute();
