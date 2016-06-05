@@ -31,14 +31,15 @@
 			<thead>
 				<tr>
 					<th>Pseudonyme</th>
-					<th>Score</th>
+					<th>Nombre de mots trouvés</th>
 					<th>Longueur du mot</th>
 				</tr>
 			</thead><tbody>';
 		while($rep=$req->fetch(PDO::FETCH_ASSOC)){
-			$table+= "<tr><td>".$rep['pseudonyme']."</td><td>".$rep['score']. "</td><td>" .$rep['longueur_mot']."</td></tr>";
+			$table = $table."<tr><td>".htmlentities($rep['pseudonyme'])."</td><td>".$rep['score']. "</td><td>" .$rep['longueur_mot']."</td></tr>";
 		}
-		$table += "</tbody></table>";
+
+		$table = $table.'</tbody></table>';
 		echo $table;
 	}
 
