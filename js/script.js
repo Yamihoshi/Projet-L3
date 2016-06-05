@@ -15,7 +15,7 @@ function timerEvent()
 {	
 	if(timer.horloge>0)
 	{
-		$("#valTimer").html(timer.horloge-1 +"&nbsp;");
+		$("#valTimer").html("&nbsp;"+(timer.horloge-1) +"&nbsp;");
 		timer.horloge=timer.horloge-1;
 	}
 
@@ -97,7 +97,7 @@ function resetTimer()
 			setTimeout(function()
 			{
 				timer.horloge=timer.temps;
-				$("#valTimer").html(timer.temps + "&nbsp;");
+				$("#valTimer").html("&nbsp;"+timer.temps + "&nbsp;");
 				if(win==0)
 				{
 					timerEventHandler = setInterval(timerEvent, 1000);
@@ -357,7 +357,7 @@ $(document).ready(function(){
 				motus = new Motus(motus.taille,motus.essai);
 				motus.creerTableau();
 				timer.horloge=timer.temps;
-				$("#valTimer").html(timer.temps + "&nbsp;");
+				$("#valTimer").html("&nbsp;" + timer.temps + "&nbsp;");
 				setTimeout( function(){
 					timerEventHandler = setInterval(timerEvent, 1000);
 					$("#validerMot").removeAttr("disabled");
@@ -416,7 +416,7 @@ $(document).ready(function(){
 
 		timer.temps=$('#timerSettings').val();
 		timer.horloge=timer.temps;
-		$("#valTimer").html(timer.temps + "&nbsp;");
+		$("#valTimer").html("&nbsp;" + timer.temps + "&nbsp;");
 
 		/*TIMER*/
 		timerEventHandler = setInterval(timerEvent, 1000);

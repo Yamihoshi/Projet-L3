@@ -36,9 +36,9 @@
 				</tr>
 			</thead><tbody>';
 		while($rep=$req->fetch(PDO::FETCH_ASSOC)){
-			$table+= "<tr><td>".$rep['pseudonyme']."</td><td>".$rep['score']. "</td><td>" .$rep['longueur_mot']."</td></tr>";
+			$table.= "<tr><td>".$rep['pseudonyme']."</td><td>".$rep['score']. "</td><td>" .$rep['longueur_mot']."</td></tr>";
 		}
-		$table += "</tbody></table>";
+		$table .= "</tbody></table>";
 		echo $table;
 	}
 
