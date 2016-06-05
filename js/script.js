@@ -114,10 +114,11 @@ function resetTimer()
 		else if(win==0)
 		{
 			$('#play').hide();
+			$("h1").html("Motus");
 			//$('#config').show(250);
 				
 			//$("body").append('<div><button id="newGame">REJOUER</button></div></div>');
-			$("body").append('<div id="endGame"><div>VOUS AVEZ PERDU</div><div>Le mot était :'+motus.mot.mot_a_trouver.toUpperCase()+'</div><div><div> Vous avez trouvé '+score+'mots</div><input type="text" placeholder="Pseudonyme" id="pseudo" /><button id="showHighscore">Enregistrer votre score</button><button id="skipHighscore">Passez cette étape</button></div></div>');
+			$("body").append('<div id="endGame"><div>VOUS AVEZ PERDU</div><div>Le mot était :'+motus.mot.mot_a_trouver.toUpperCase()+'</div><div><div> Vous avez trouvé '+score+'mots</div><input type="text" placeholder="Pseudonyme" id="pseudo" /><button id="showHighscore" disabled>Enregistrer votre score</button><button id="skipHighscore">Passez cette étape</button></div></div>');
 		}
 }
 
@@ -394,13 +395,17 @@ $(document).ready(function(){
 	{
 		pseudo=$("#pseudo").val();
 
-		$.post("php/ajax.php",{Pseudo:pseudo,User:true,score:score,longueur_mot:motus.taille},function(res){
-			
-			$.get("php/ajax.php",{highScore:true},function(res){
-				$("#endGame").html('<button id="newGame">Rejouer</button>');
-				$("#endGame").append(res);
+		if(pseudo.trim()!='')
+		{
+			$.post("php/ajax.php",{Pseudo:pseudo,User:true,score:score,longueur_mot:motus.taille},function(res){
+				
+				$.get("php/ajax.php",{highScore:true},function(res){
+					$("#endGame").html('<button id="newGame">Rejouer</button>');
+					$("#endGame").append(res);
+				});
 			});
-		});
+		}
+
 	});
 
 	$("body").on("click","#newGame",function()
@@ -458,6 +463,22 @@ $(document).ready(function(){
 
 		if(event.keyCode==13)
 			$("#validerMot").trigger("click");
+	});
+
+	$("body").on("change","#pseudo",function()
+	{
+		if($(this).val().trim()=='')
+			$("#showHighscore").attr('disabled','disabled');
+		else
+			$("#showHighscore").removeAttr('disabled');
+	});
+
+	$("body").on("keyup","#pseudo",function()
+	{
+		if($(this).val().trim()=='')
+			$("#showHighscore").attr('disabled','disabled');
+		else
+			$("#showHighscore").removeAttr('disabled');
 	});
 
 	/*$("body").keydown(function(event)
