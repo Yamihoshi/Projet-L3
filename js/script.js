@@ -426,6 +426,8 @@ $(document).ready(function(){
 		motus.creerTableau();
 		score=0;
 		$('#config').hide();
+		$("h1").remove();
+		$("header").html('<h1><div id="scoreDisplay">Mots trouvés : <span id="scoreValue">0</span></div></h1>');
 		$('#play').show(250);
 
 		timer.temps=$('#timerSettings').val();
