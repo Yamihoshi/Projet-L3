@@ -9,7 +9,13 @@ var timerEventHandler;
 var motus;
 var pseudo;
 var score;
-
+var playerAudio=
+{
+	 bienPlacee : new Audio("sound/bienPlacee.wav"),
+	 malPlacee : new Audio("sound/malPlacee.wav"),
+	 mauvaiseLettre : new Audio("sound/mauvaiseLettre.wav"),
+	 sonVictoire : new Audio("sound/sonVictoire.wav")
+};
 
 function timerEvent()
 {	
@@ -85,7 +91,7 @@ function resetTimer()
 			win=1;
 
 		clearInterval(timerEventHandler);
-		var delay=motus.taille*250+150+win*3150;
+		var delay=motus.taille*220+150+win*3150;
 
 		if(!motus.proposerMot($("#mot").val()))
 			delay=500;
@@ -113,6 +119,14 @@ function resetTimer()
 			//$("body").append('<div><button id="newGame">REJOUER</button></div></div>');
 			$("body").append('<div id="endGame"><div>VOUS AVEZ PERDU</div><div>Le mot était :'+motus.mot.mot_a_trouver.toUpperCase()+'</div><div><div> Vous avez trouvé '+score+'mots</div><input type="text" placeholder="Pseudonyme" id="pseudo" /><button id="showHighscore">Enregistrer votre score</button><button id="skipHighscore">Passez cette étape</button></div></div>');
 		}
+}
+
+function pauseAudio()
+{
+	Object.keys(playerAudio).forEach(function(key) {
+        playerAudio[key].pause();
+        playerAudio[key].currentTime=0;
+    });
 }
 
 loadDictionnary();//A placer avant document ready
@@ -229,25 +243,25 @@ $(document).ready(function(){
 				$('table tr:nth-child(' + (this.tentative + 1) + ')  td:nth-child('+ (i + 1) +')').html(mot_propose.charAt(i));
 				if(this.mot.mot_a_trouver.charAt(i) === mot_propose.charAt(i))
 				{
-					audio = new Audio("sound/bienPlacee.wav");
+					audio = playerAudio.bienPlacee;
 					classLettre='lettreCorrect';
 					this.ajouterIndiceLettreFind(i);
 				}
 				else if(present_dans_le_mot !== -1){
 					console.log(" 2. " + this.mot.mot_a_trouver.charAt(i) + " 20. "+  mot_propose.charAt(i))
-					audio = new Audio("sound/malPlacee.wav");
+					audio = playerAudio.malPlacee;
 					classLettre='lettreMalPlacee';
 					tmp = tmp.replace(mot_propose.charAt(i));
 				}
 				else
 				{
 					classLettre='';
-					audio = new Audio("sound/mauvaiseLettre.wav");
+					audio = playerAudio.mauvaiseLettre;
 				}
 
-				delay=225*(i+1);
+				delay=220*(i+1);
 				(function(delayTime,myCase,myClass,audioToPlay){
-	        		setTimeout( function(){audioToPlay.load();myCase.addClass(myClass);audioToPlay.play();}, delayTime);
+	        		setTimeout( function(){pauseAudio();myCase.addClass(myClass);audioToPlay.play();}, delayTime);
 	    		})(delay,caseARemplir,classLettre,audio);
 
 			}
@@ -315,7 +329,7 @@ $(document).ready(function(){
 
 			        	setTimeout( function(){
 			        		motus.letterFind();
-			        	}, motus.taille*250);
+			        	}, motus.taille*220);
 
 			    	})(this);
 		    	}
@@ -339,7 +353,7 @@ $(document).ready(function(){
 
 		gestionVictoire(){
 			
-			var audio = new Audio("sound/sonVictoire.wav");
+			var audio = playerAudio.sonVictoire;
 			audio.volume = 0.4;
 			$("#mot").val("");
 			score++;
@@ -361,11 +375,11 @@ $(document).ready(function(){
 				setTimeout( function(){
 					timerEventHandler = setInterval(timerEvent, 1000);
 					$("#validerMot").removeAttr("disabled");
-				},1000);
+				},750);
 				
 				//$("body").append('<div id="endGame">VOUS AVEZ GAGNE<div><button id="newGame">REJOUER</button></div></div>');
 
-			},this.taille*250+3150) //taille*250 pour laisser le son des lettres + 3s pour jouer le son victoire
+			},this.taille*230+3150) //taille*250 pour laisser le son des lettres + 3s pour jouer le son victoire
 		}
 	}
 
@@ -412,6 +426,8 @@ $(document).ready(function(){
 		motus.creerTableau();
 		score=0;
 		$('#config').hide();
+		$("h1").remove();
+		$("header").html('<h1><div id="scoreDisplay">Mots trouvés : <span id="scoreValue">0</span></div></h1>');
 		$('#play').show(250);
 
 		timer.temps=$('#timerSettings').val();
