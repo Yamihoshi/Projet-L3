@@ -1,5 +1,6 @@
 "use strict";
 var dico=[];
+var dico2=[];
 var timer=
 {
 	valeur:8,
@@ -30,10 +31,10 @@ function timerEvent()
 
 }
 
-function loadDictionnary()
+function loadDictionnary(nom, dico)
 {
      var txtFile = new XMLHttpRequest();
-     txtFile.open("GET", "dico.txt", true); //Si ça bug, remettre à false
+	 txtFile.open("GET", nom, true); //Si ça bug, remettre à false
      txtFile.overrideMimeType('text/plain; charset=iso-8859-1');
      txtFile.onreadystatechange = function () 
      {
@@ -59,9 +60,17 @@ function loadDictionnary()
 
 function getRandomWord(taille)
 {
-	var sousDico = dico.filter( function( element ) {
-  		return breakUTF8Character(element).length == taille;
-	});
+	if ($('input:checked').val()=="fr"){
+		var sousDico = dico.filter( function( element ) {
+			return breakUTF8Character(element).length == taille;
+		});
+	}
+	else{
+		var sousDico = dico2.filter( function( element ) {
+			return breakUTF8Character(element).length == taille;
+		});
+	}
+		
 
 	var index = Math.floor((Math.random() * (sousDico.length-1)) );
 
@@ -130,7 +139,8 @@ function pauseAudio()
     });
 }
 
-loadDictionnary();//A placer avant document ready
+loadDictionnary("dico.txt", dico);//A placer avant document ready
+loadDictionnary("dico_anglais.txt", dico2);
 
 $(document).ready(function(){
 
