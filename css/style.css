@@ -2,7 +2,7 @@
 
 body{
     font-family: "Roboto", "Verdana", "Times New Roman", Times, "Nimbus Roman No9 L", serif;
-    font-size: 1em;
+    font-size: 1.5em;
     background-color: #f5f5f5;
     color: black;
 }
@@ -47,7 +47,9 @@ header h1{
     text-align: center;
 }
 
-
+#endGame{
+    float: none;
+}
 .item
 {
 	margin:30px 0;
@@ -60,6 +62,9 @@ label{
     font-size: 1.25em;
 }
 
+button + button{
+    margin 0 20px;
+}
 
 #timer{
     width: 200px;

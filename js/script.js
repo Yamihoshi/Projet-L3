@@ -118,7 +118,7 @@ function resetTimer()
 			//$('#config').show(250);
 				
 			//$("body").append('<div><button id="newGame">REJOUER</button></div></div>');
-			$("body").append('<div id="endGame"><div>VOUS AVEZ PERDU</div><div>Le mot était :'+motus.mot.mot_a_trouver.toUpperCase()+'</div><div><div> Vous avez trouvé '+score+'mots</div><input type="text" placeholder="Pseudonyme" id="pseudo" /><button id="showHighscore" disabled>Enregistrer votre score</button><button id="skipHighscore">Passez cette étape</button></div></div>');
+			$("#config").after('<div id="endGame" class="col-lg-8 center-block"><h1>VOUS AVEZ PERDU !</h1><p>Le mot était : '+motus.mot.mot_a_trouver.toUpperCase()+' Vous avez trouvé '+score+' mots</p><div class="form-group"><input type="text" class="form-control" placeholder="Pseudonyme" id="pseudo" /></div><div class="centered"><button id="showHighscore" class="btn btn-danger" disabled>Enregistrer votre score</button><button class="btn btn-danger" id="skipHighscore">Passez cette étape</button</div></div></div>');
 		}
 }
 
@@ -400,7 +400,7 @@ $(document).ready(function(){
 			$.post("php/ajax.php",{Pseudo:pseudo,User:true,score:score,longueur_mot:motus.taille},function(res){
 				
 				$.get("php/ajax.php",{highScore:true},function(res){
-					$("#endGame").html('<button id="newGame">Rejouer</button>');
+					$("#endGame").html('<button id="newGame"  class="btn btn-danger" >Rejouer</button>');
 					$("#endGame").append(res);
 				});
 			});
