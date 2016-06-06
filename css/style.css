@@ -2,7 +2,7 @@
 
 body{
     font-family: "Roboto", "Verdana", "Times New Roman", Times, "Nimbus Roman No9 L", serif;
-    font-size: 1.5em;
+    font-size: 1em;
     background-color: #f5f5f5;
     color: black;
 }
@@ -19,7 +19,9 @@ body{
     display: inline-block;
     background: linear-gradient(#2eb2fc, #0268cc);
 }
-
+p, input, textarea{
+    font-size: 1.5em;
+}
 #play th, #play td {
     border: 1px solid lightblue;
    /* background-color:#1895e7;*/
@@ -62,8 +64,8 @@ label{
     font-size: 1.25em;
 }
 
-button + button{
-    margin 0 20px;
+#showHighscore{
+    margin-right:25px;
 }
 
 #timer{

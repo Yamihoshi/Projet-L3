@@ -118,7 +118,7 @@ function resetTimer()
 			//$('#config').show(250);
 				
 			//$("body").append('<div><button id="newGame">REJOUER</button></div></div>');
-			$("#config").after('<div id="endGame" class="col-lg-8 center-block"><h1>VOUS AVEZ PERDU !</h1><p>Le mot était : '+motus.mot.mot_a_trouver.toUpperCase()+' Vous avez trouvé '+score+' mots</p><div class="form-group"><input type="text" class="form-control" placeholder="Pseudonyme" id="pseudo" /></div><div class="centered"><button id="showHighscore" class="btn btn-danger" disabled>Enregistrer votre score</button><button class="btn btn-danger" id="skipHighscore">Passez cette étape</button</div></div></div>');
+			$("#config").after('<div id="endGame" class="col-lg-8 center-block"><h1>VOUS AVEZ PERDU !</h1><p>Le mot était : '+motus.mot.mot_a_trouver.toUpperCase()+'. Vous avez trouvé '+score+' mots</p><div class="form-group"><input type="text" class="form-control" placeholder="Pseudonyme" id="pseudo" /></div><div class="centered"><button id="showHighscore" class="btn btn-danger" disabled>Enregistrer votre score</button><button class="btn btn-danger" id="skipHighscore">Passez cette étape</button</div></div></div>');
 		}
 }
 
