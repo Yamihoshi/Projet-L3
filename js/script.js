@@ -138,7 +138,8 @@ $(document).ready(function(){
 		return new Typo(langue);
 	}
 
-	var dictionary = load("fr_FR");
+	var dictionary;
+	var ancienne_langue;
 
 	class MotCherche{
 		constructor(mot){
@@ -154,11 +155,8 @@ $(document).ready(function(){
 			console.log(mot_propose+ this.mot_a_trouver);
 			if(this.mot_a_trouver.length !== mot_propose.length)
 				return false;
-			/*else if(this.mot_a_trouver.charAt(0) !== mot_propose.charAt(0))
-				return false;*/
-			//ajouter vérification ortho taln
 			else 
-				return true; 
+				return dictionary.check(mot_propose); 
 		}
 
 		traitementMot(mot_propose){
@@ -296,8 +294,6 @@ $(document).ready(function(){
 				motAjoute=true;
 			}
 			else if(this.mot_deja_propose.indexOf(mot_propose) !== -1){
-			 // gestion erreur
-			 console.log("lost");
 			 this.ajouterMauvaisMot(mot_propose);
 			}
 			else{
@@ -367,8 +363,7 @@ $(document).ready(function(){
 
 			setTimeout(function()
 			{
-				//$('#play').hide();
-				//$('#config').show(250);
+
 				motus = new Motus(motus.taille,motus.essai);
 				motus.creerTableau();
 				timer.horloge=timer.temps;
@@ -436,11 +431,12 @@ $(document).ready(function(){
 		$("#validerMot").removeAttr("disabled");
 		var taille = parseInt($('#taille_mot').val());
 		var nombre_essai = parseInt($('#nombre_essai').val());
-		langue= $('input[name="langue"]:checked').val();
-		/*if(ancienne_langue !== 'undefined' && langue !== ancienne_langue){
+		var langue= $('input[name="langue"]:checked').val();
+		if(ancienne_langue !== 'undefined' && langue !== ancienne_langue){
 			ancienne_langue = langue;
-			//dictionary.load(langue);  /// Load TALN !!!
-		}*/
+			dictionary = load(langue);  /// Load TALN !!!
+		}
+
 		motus = new Motus(taille , nombre_essai);
 		motus.creerTableau();
 		score=0;
@@ -453,7 +449,7 @@ $(document).ready(function(){
 		timer.horloge=timer.temps;
 		$("#valTimer").html("&nbsp;" + timer.temps + "&nbsp;");
 
-		/*TIMER*/
+		console.log(dictionary.check("EEEEEE") + "eeeee");
 		timerEventHandler = setInterval(timerEvent, 1000);
 		
 	});
@@ -519,6 +515,5 @@ $(document).ready(function(){
 		$('#config').show(250);
 	});
 	
-	console.log(dictionary.check("elements"));
 
 });
