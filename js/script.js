@@ -1,6 +1,5 @@
 "use strict";
 var dico=[];
-var dico2=[];
 var timer=
 {
 	valeur:8,
@@ -31,10 +30,10 @@ function timerEvent()
 
 }
 
-function loadDictionnary(nom, dico)
+function loadDictionnary(nom)
 {
      var txtFile = new XMLHttpRequest();
-	 txtFile.open("GET", nom, true); //Si ça bug, remettre à false
+	 txtFile.open("GET", nom, false);
      txtFile.overrideMimeType('text/plain; charset=iso-8859-1');
      txtFile.onreadystatechange = function () 
      {
@@ -60,17 +59,9 @@ function loadDictionnary(nom, dico)
 
 function getRandomWord(taille)
 {
-	if ($('input:checked').val()=="fr"){
-		var sousDico = dico.filter( function( element ) {
-			return breakUTF8Character(element).length == taille;
-		});
-	}
-	else{
-		var sousDico = dico2.filter( function( element ) {
-			return breakUTF8Character(element).length == taille;
-		});
-	}
-		
+	var sousDico = dico.filter( function( element ) {
+		return breakUTF8Character(element).length == taille;
+	});
 
 	var index = Math.floor((Math.random() * (sousDico.length-1)) );
 
@@ -139,9 +130,6 @@ function pauseAudio()
     });
 }
 
-loadDictionnary("dico.txt", dico);//A placer avant document ready
-loadDictionnary("dico_anglais.txt", dico2);
-
 $(document).ready(function(){
 
 	var langue;
@@ -150,7 +138,7 @@ $(document).ready(function(){
 		return new Typo(langue);
 	}
 
-	//var dictionary = load();
+	var dictionary = load("fr_FR");
 
 	class MotCherche{
 		constructor(mot){
@@ -272,7 +260,7 @@ $(document).ready(function(){
 					audio = playerAudio.mauvaiseLettre;
 				}
 
-				delay=220*(i+1);
+				delay=225*(i+1);
 				(function(delayTime,myCase,myClass,audioToPlay){
 	        		setTimeout( function(){pauseAudio();myCase.addClass(myClass);audioToPlay.play();}, delayTime);
 	    		})(delay,caseARemplir,classLettre,audio);
@@ -434,15 +422,25 @@ $(document).ready(function(){
 
 	$('#config').on('submit', function(event){
 		event.preventDefault();
+
+		if ($('input:checked').val()=="fr_FR"){
+			loadDictionnary("dico_FR.txt");
+		}
+		else
+		{
+			loadDictionnary("dico_ENG.txt");
+		}
+
+
 		$("#mot").val("");
 		$("#validerMot").removeAttr("disabled");
 		var taille = parseInt($('#taille_mot').val());
 		var nombre_essai = parseInt($('#nombre_essai').val());
 		langue= $('input[name="langue"]:checked').val();
-		if(ancienne_langue !== 'undefined' && langue !== ancienne_langue){
+		/*if(ancienne_langue !== 'undefined' && langue !== ancienne_langue){
 			ancienne_langue = langue;
 			//dictionary.load(langue);  /// Load TALN !!!
-		}
+		}*/
 		motus = new Motus(taille , nombre_essai);
 		motus.creerTableau();
 		score=0;
@@ -521,6 +519,6 @@ $(document).ready(function(){
 		$('#config').show(250);
 	});
 	
-	//console.log(dictionary.check("VOITURE"));
+	console.log(dictionary.check("elements"));
 
 });
