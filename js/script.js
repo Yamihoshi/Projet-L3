@@ -144,8 +144,10 @@ loadDictionnary("dico_anglais.txt", dico2);
 
 $(document).ready(function(){
 
-	function load() {
-		return new Typo("fr_FR");
+	var langue;
+	var arncienne_langue;
+	function load(langue) {
+		return new Typo(langue);
 	}
 
 	//var dictionary = load();
@@ -186,8 +188,8 @@ $(document).ready(function(){
 	//Class motus
 	var Motus = class Motus{
 
-		constructor(taille, nombre_essai){
-			//this.mot = new MotCherche("AVION", 1);
+		constructor(taille, nombre_essai, langue, ancienne_langue){
+			this.langue = langue;
 			this.mot = new MotCherche(getRandomWord(taille));
 			this.tentative = 0;
 			this.mot_deja_propose = [];
@@ -436,7 +438,11 @@ $(document).ready(function(){
 		$("#validerMot").removeAttr("disabled");
 		var taille = parseInt($('#taille_mot').val());
 		var nombre_essai = parseInt($('#nombre_essai').val());
-
+		langue= $('input[name="langue"]:checked').val();
+		if(ancienne_langue !== 'undefined' && langue !== ancienne_langue){
+			ancienne_langue = langue;
+			//dictionary.load(langue);  /// Load TALN !!!
+		}
 		motus = new Motus(taille , nombre_essai);
 		motus.creerTableau();
 		score=0;
@@ -451,10 +457,6 @@ $(document).ready(function(){
 
 		/*TIMER*/
 		timerEventHandler = setInterval(timerEvent, 1000);
-
-
-		console.log("Mot à trouver :",motus.mot.mot_a_trouver);
-		console.log("temps",timer.temps);
 		
 	});
 
