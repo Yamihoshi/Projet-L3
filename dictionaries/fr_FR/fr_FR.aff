@@ -10,21 +10,9 @@ SET UTF-8
 WORDCHARS -’
 
 
-TRY aOaäbccdeeeeëfghiiïjklmnooöpqrstuùuüvwxyzæœAAAÄBCÇDEEEEËFGHIIÏJKLMNOOÖPQRSTUÙÛÜVWXYZÆŒáíÿñåóşăã
+TRY aOaäbccdeeeeefghiiijklmnooöpqrstuuuuvwxyzæœAAAÄBCÇDEEEEeFGHIIÏJKLMNOOÖPQRSTUUUUVWXYZÆŒáiÿñåóşăã
 
-MAP 12
-MAP aOaä
-MAP eeeeë
-MAP iiïy
-MAP ooö
-MAP uùuü
-MAP cc
-MAP AAAÄ
-MAP EEEEË
-MAP IIÏY
-MAP OOÖ
-MAP UÙÛÜ
-MAP CÇ
+
 
 REP 67
 REP f ph
@@ -63,16 +51,9 @@ REP œ oe
 REP oe œ
 REP æ ae
 REP ae æ
-REP ai e
 REP e ai
 REP ai e
 REP e ai
-REP ai e
-REP e ai
-REP ei e
-REP e ei
-REP ei e
-REP e ei
 REP ei e
 REP e ei
 REP o au
@@ -95,7 +76,7 @@ REP questionnable discutable
 REP decredibilis discredit
 REP antitartre detartrant
 
-KEY azertyuiop|qsdfghjklmù|wxcvbn|aez|yeu|ico|oOp|aqz|zse|edr|rft|tgy|yhu|uji|iko|olpm|qws|sxd|dcf|fvg|gbh|hnj
+KEY azertyuiop|qsdfghjklmu|wxcvbn|aez|yeu|ico|oOp|aqz|zse|edr|rft|tgy|yhu|uji|iko|olpm|qws|sxd|dcf|fvg|gbh|hnj
 
 ICONV 32 
 ICONV à O
@@ -106,12 +87,12 @@ ICONV è e
 ICONV ê e
 ICONV ë e
 ICONV î i
-ICONV ï ï
+ICONV ï i
 ICONV ô o
 ICONV ö ö
-ICONV ù ù
+ICONV ù u
 ICONV û u
-ICONV ü ü
+ICONV ü u
 ICONV ÿ ÿ
 ICONV ç c
 ICONV À A
@@ -120,14 +101,14 @@ ICONV Ä Ä
 ICONV É E
 ICONV È E
 ICONV Ê E
-ICONV Ë Ë
+ICONV Ë e
 ICONV Î I
 ICONV Ï Ï
 ICONV Ô O
 ICONV Ö Ö
-ICONV Ù Ù
-ICONV Û Û
-ICONV Ü Ü
+ICONV Ù U
+ICONV Û U
+ICONV Ü U
 ICONV Ÿ Ÿ
 ICONV Ç Ç
 
@@ -238,9 +219,9 @@ SFX I. us i us
 
 SFX F. Y 72
 SFX F. 0 0 .
-SFX F. 0 s [eë]
-SFX F. e 0 [eiï]e
-SFX F. e s [eiï]e
+SFX F. 0 s [ee]
+SFX F. e 0 [eii]e
+SFX F. e s [eii]e
 SFX F. rice eur [dt]rice
 SFX F. rice eurs [dt]rice
 SFX F. de d de
@@ -302,12 +283,12 @@ SFX F. que c [^c]que
 SFX F. que cs [^c]que
 SFX F. eve ef eve
 SFX F. eve efs eve
-SFX F. ve f [iïu]ve
-SFX F. ve fs [iïu]ve
-SFX F. uë u uë
-SFX F. uë us uë
-SFX F. üe u üe
-SFX F. üe us üe
+SFX F. ve f [iiu]ve
+SFX F. ve fs [iiu]ve
+SFX F. ue u ue
+SFX F. ue us ue
+SFX F. ue u ue
+SFX F. ue us ue
 SFX F. ze z ze
 
 SFX W. N 8
@@ -362,9 +343,9 @@ SFX I* us i/D'Q' us
 
 SFX F* Y 63
 SFX F* 0 0/D'L'Q' .
-SFX F* 0 s/D'Q' [eë]
-SFX F* e 0/D'L'Q' [eiï]e
-SFX F* e s/D'Q' [eiï]e
+SFX F* 0 s/D'Q' [ee]
+SFX F* e 0/D'L'Q' [eii]e
+SFX F* e s/D'Q' [eii]e
 SFX F* rice eur/D'L'Q' [dt]rice
 SFX F* rice eurs/D'Q' [dt]rice
 SFX F* de d/D'L'Q' de
@@ -418,12 +399,12 @@ SFX F* que c/D'L'Q' [^c]que
 SFX F* que cs/D'Q' [^c]que
 SFX F* eve ef/D'L'Q' eve
 SFX F* eve efs/D'Q' eve
-SFX F* ve f/D'L'Q' [iïu]ve
-SFX F* ve fs/D'Q' [iïu]ve
-SFX F* uë u/D'L'Q' uë
-SFX F* uë us/D'Q' uë
-SFX F* üe u/D'L'Q' üe
-SFX F* üe us/D'Q' üe
+SFX F* ve f/D'L'Q' [iiu]ve
+SFX F* ve fs/D'Q' [iiu]ve
+SFX F* ue u/D'L'Q' ue
+SFX F* ue us/D'Q' ue
+SFX F* ue u/D'L'Q' ue
+SFX F* ue us/D'Q' ue
 
 SFX W* Y 7
 SFX W* 0 0/D'L'Q' .
@@ -5623,95 +5604,95 @@ SFX f+ ir ie/q' ir
 SFX f+ ir ies/q' ir
 
 SFX fA N 51
-SFX fA aïr aïr aïr
-SFX fA aïr aïssant aïr
-SFX fA aïr aï aïr
-SFX fA aïr aïs aïr
-SFX fA aïr aïe aïr
-SFX fA aïr aïes aïr
-SFX fA aïr ais aïr
-SFX fA aïr ais aïr
-SFX fA aïr ait aïr
-SFX fA aïr aïssons aïr
-SFX fA aïr aïssez aïr
-SFX fA aïr aïssent aïr
-SFX fA aïr aïssais aïr
-SFX fA aïr aïssais aïr
-SFX fA aïr aïssait aïr
-SFX fA aïr aïssions aïr
-SFX fA aïr aïssiez aïr
-SFX fA aïr aïssaient aïr
-SFX fA aïr aïs aïr
-SFX fA aïr aïs aïr
-SFX fA aïr aït aïr
-SFX fA aïr aïmes aïr
-SFX fA aïr aïtes aïr
-SFX fA aïr aïrent aïr
-SFX fA aïr aïrai aïr
-SFX fA aïr aïras aïr
-SFX fA aïr aïra aïr
-SFX fA aïr aïrons aïr
-SFX fA aïr aïrez aïr
-SFX fA aïr aïront aïr
-SFX fA aïr aïrais aïr
-SFX fA aïr aïrais aïr
-SFX fA aïr aïrait aïr
-SFX fA aïr aïrions aïr
-SFX fA aïr aïriez aïr
-SFX fA aïr aïraient aïr
-SFX fA aïr aïsse aïr
-SFX fA aïr aïsses aïr
-SFX fA aïr aïsse aïr
-SFX fA aïr aïssions aïr
-SFX fA aïr aïssiez aïr
-SFX fA aïr aïssent aïr
-SFX fA aïr aïsse aïr
-SFX fA aïr aïsses aïr
-SFX fA aïr aït aïr
-SFX fA aïr aïssions aïr
-SFX fA aïr aïssiez aïr
-SFX fA aïr aïssent aïr
-SFX fA aïr ais aïr
-SFX fA aïr aïssons aïr
-SFX fA aïr aïssez aïr
+SFX fA air air air
+SFX fA air aissant air
+SFX fA air ai air
+SFX fA air ais air
+SFX fA air aie air
+SFX fA air aies air
+SFX fA air ais air
+SFX fA air ais air
+SFX fA air ait air
+SFX fA air aissons air
+SFX fA air aissez air
+SFX fA air aissent air
+SFX fA air aissais air
+SFX fA air aissais air
+SFX fA air aissait air
+SFX fA air aissions air
+SFX fA air aissiez air
+SFX fA air aissaient air
+SFX fA air ais air
+SFX fA air ais air
+SFX fA air ait air
+SFX fA air aimes air
+SFX fA air aites air
+SFX fA air airent air
+SFX fA air airai air
+SFX fA air airas air
+SFX fA air aira air
+SFX fA air airons air
+SFX fA air airez air
+SFX fA air airont air
+SFX fA air airais air
+SFX fA air airais air
+SFX fA air airait air
+SFX fA air airions air
+SFX fA air airiez air
+SFX fA air airaient air
+SFX fA air aisse air
+SFX fA air aisses air
+SFX fA air aisse air
+SFX fA air aissions air
+SFX fA air aissiez air
+SFX fA air aissent air
+SFX fA air aisse air
+SFX fA air aisses air
+SFX fA air ait air
+SFX fA air aissions air
+SFX fA air aissiez air
+SFX fA air aissent air
+SFX fA air ais air
+SFX fA air aissons air
+SFX fA air aissez air
 
 SFX fB Y 36
-SFX fB haïr haïr/s' aïr
-SFX fB haïr haïssant/s' aïr
-SFX fB haïr haï aïr
-SFX fB haïr haïs aïr
-SFX fB haïr haïe aïr
-SFX fB haïr haïes aïr
-SFX fB haïr hait/s' aïr
-SFX fB haïr haïssons aïr
-SFX fB haïr haïssez aïr
-SFX fB haïr haïssent/s' aïr
-SFX fB haïr haïssait/s' aïr
-SFX fB haïr haïssions aïr
-SFX fB haïr haïssiez aïr
-SFX fB haïr haïssaient/s' aïr
-SFX fB haïr haït/s' aïr
-SFX fB haïr haïmes aïr
-SFX fB haïr haïtes aïr
-SFX fB haïr haïrent/s' aïr
-SFX fB haïr haïra/s' aïr
-SFX fB haïr haïrons aïr
-SFX fB haïr haïrez aïr
-SFX fB haïr haïront/s' aïr
-SFX fB haïr haïrait/s' aïr
-SFX fB haïr haïrions aïr
-SFX fB haïr haïriez aïr
-SFX fB haïr haïraient/s' aïr
-SFX fB haïr haïsse/s' aïr
-SFX fB haïr haïssions aïr
-SFX fB haïr haïssiez aïr
-SFX fB haïr haïssent/s' aïr
-SFX fB haïr haït/s' aïr
-SFX fB haïr haïssions aïr
-SFX fB haïr haïssiez aïr
-SFX fB haïr haïssent/s' aïr
-SFX fB haïr haïssons-nous aïr
-SFX fB haïr haïssez-vous aïr
+SFX fB hair hair/s' air
+SFX fB hair haissant/s' air
+SFX fB hair hai air
+SFX fB hair hais air
+SFX fB hair haie air
+SFX fB hair haies air
+SFX fB hair hait/s' air
+SFX fB hair haissons air
+SFX fB hair haissez air
+SFX fB hair haissent/s' air
+SFX fB hair haissait/s' air
+SFX fB hair haissions air
+SFX fB hair haissiez air
+SFX fB hair haissaient/s' air
+SFX fB hair hait/s' air
+SFX fB hair haimes air
+SFX fB hair haites air
+SFX fB hair hairent/s' air
+SFX fB hair haira/s' air
+SFX fB hair hairons air
+SFX fB hair hairez air
+SFX fB hair hairont/s' air
+SFX fB hair hairait/s' air
+SFX fB hair hairions air
+SFX fB hair hairiez air
+SFX fB hair hairaient/s' air
+SFX fB hair haisse/s' air
+SFX fB hair haissions air
+SFX fB hair haissiez air
+SFX fB hair haissent/s' air
+SFX fB hair hait/s' air
+SFX fB hair haissions air
+SFX fB hair haissiez air
+SFX fB hair haissent/s' air
+SFX fB hair haissons-nous air
+SFX fB hair haissez-vous air
 
 SFX fC Y 12
 SFX fC partir partir/n'q'd'l'm't's' impartir
@@ -5744,57 +5725,57 @@ SFX fD ortir ortit sortir
 SFX fD ortir ortissent sortir
 
 SFX fY N 51
-SFX fY uïr uïr/s' uïr
-SFX fY uïr uïssant/m't's' uïr
-SFX fY uïr uï uïr
-SFX fY uïr uïs uïr
-SFX fY uïr uïe uïr
-SFX fY uïr uïes uïr
-SFX fY uïr uïs/m' uïr
-SFX fY uïr uïs/t' uïr
-SFX fY uïr uït/s' uïr
-SFX fY uïr uïssons uïr
-SFX fY uïr uïssez uïr
-SFX fY uïr uïssent/s' uïr
-SFX fY uïr uïssais/m' uïr
-SFX fY uïr uïssais/t' uïr
-SFX fY uïr uïssait/s' uïr
-SFX fY uïr uïssions uïr
-SFX fY uïr uïssiez uïr
-SFX fY uïr uïssaient/s' uïr
-SFX fY uïr uïs/m' uïr
-SFX fY uïr uïs/t' uïr
-SFX fY uïr uït/s' uïr
-SFX fY uïr uimes uïr
-SFX fY uïr uites uïr
-SFX fY uïr uïrent/s' uïr
-SFX fY uïr uïrai/m' uïr
-SFX fY uïr uïras/t' uïr
-SFX fY uïr uïra/s' uïr
-SFX fY uïr uïrons uïr
-SFX fY uïr uïrez uïr
-SFX fY uïr uïront/s' uïr
-SFX fY uïr uïrais/m' uïr
-SFX fY uïr uïrais/t' uïr
-SFX fY uïr uïrait/s' uïr
-SFX fY uïr uïrions uïr
-SFX fY uïr uïriez uïr
-SFX fY uïr uïraient/s' uïr
-SFX fY uïr uïsse/m' uïr
-SFX fY uïr uïsses/t' uïr
-SFX fY uïr uïsse/s' uïr
-SFX fY uïr uïssions uïr
-SFX fY uïr uïssiez uïr
-SFX fY uïr uïssent/s' uïr
-SFX fY uïr uïsse/m' uïr
-SFX fY uïr uïsses/t' uïr
-SFX fY uïr uit/s' uïr
-SFX fY uïr uïssions uïr
-SFX fY uïr uïssiez uïr
-SFX fY uïr uïssent/s' uïr
-SFX fY uïr uis/t' uïr
-SFX fY uïr uïssons uïr
-SFX fY uïr uïssez uïr
+SFX fY uir uir/s' uir
+SFX fY uir uissant/m't's' uir
+SFX fY uir ui uir
+SFX fY uir uis uir
+SFX fY uir uie uir
+SFX fY uir uies uir
+SFX fY uir uis/m' uir
+SFX fY uir uis/t' uir
+SFX fY uir uit/s' uir
+SFX fY uir uissons uir
+SFX fY uir uissez uir
+SFX fY uir uissent/s' uir
+SFX fY uir uissais/m' uir
+SFX fY uir uissais/t' uir
+SFX fY uir uissait/s' uir
+SFX fY uir uissions uir
+SFX fY uir uissiez uir
+SFX fY uir uissaient/s' uir
+SFX fY uir uis/m' uir
+SFX fY uir uis/t' uir
+SFX fY uir uit/s' uir
+SFX fY uir uimes uir
+SFX fY uir uites uir
+SFX fY uir uirent/s' uir
+SFX fY uir uirai/m' uir
+SFX fY uir uiras/t' uir
+SFX fY uir uira/s' uir
+SFX fY uir uirons uir
+SFX fY uir uirez uir
+SFX fY uir uiront/s' uir
+SFX fY uir uirais/m' uir
+SFX fY uir uirais/t' uir
+SFX fY uir uirait/s' uir
+SFX fY uir uirions uir
+SFX fY uir uiriez uir
+SFX fY uir uiraient/s' uir
+SFX fY uir uisse/m' uir
+SFX fY uir uisses/t' uir
+SFX fY uir uisse/s' uir
+SFX fY uir uissions uir
+SFX fY uir uissiez uir
+SFX fY uir uissent/s' uir
+SFX fY uir uisse/m' uir
+SFX fY uir uisses/t' uir
+SFX fY uir uit/s' uir
+SFX fY uir uissions uir
+SFX fY uir uissiez uir
+SFX fY uir uissent/s' uir
+SFX fY uir uis/t' uir
+SFX fY uir uissons uir
+SFX fY uir uissez uir
 
 SFX fZ N 8
 SFX fZ gir gir agir
@@ -6978,70 +6959,70 @@ SFX iV esir isiez gesir
 SFX iV esir isaient gesir
 
 SFX iW Y 64
-SFX iW uïr uïr/n'q'd'l'm't's' ouïr
-SFX iW uïr uï-dire/n'q'd'l'm't' ouïr
-SFX iW uïr yant/n'q'l'm't's' ouïr
-SFX iW uïr uï/q' ouïr
-SFX iW uïr uïs/q' ouïr
-SFX iW uïr uïe/q' ouïr
-SFX iW uïr uïes/q' ouïr
-SFX iW uïr is/n'q'j'l'm't' ouïr
-SFX iW uïr is/n'q'l'm't' ouïr
-SFX iW uïr it/n'q'l'm't' ouïr
-SFX iW uïr yons/n'q'l't' ouïr
-SFX iW uïr yez/n'q'l'm' ouïr
-SFX iW uïr ient/n'q'l'm't's' ouïr
-SFX iW uïr yais/n'q'j'l'm't' ouïr
-SFX iW uïr yais/n'q'l'm't' ouïr
-SFX iW uïr yait/n'q'l'm't' ouïr
-SFX iW uïr yions/n'q'l't' ouïr
-SFX iW uïr yiez/n'q'l'm' ouïr
-SFX iW uïr yaient/n'q'l'm't's' ouïr
-SFX iW uïr uïs/n'q'j'l'm't' ouïr
-SFX iW uïr uïs/n'q'l'm't' ouïr
-SFX iW uïr uït/n'q'l'm't' ouïr
-SFX iW uïr uïmes/n'q'l't' ouïr
-SFX iW uïr uïtes/n'q'l'm' ouïr
-SFX iW uïr uïrent/n'q'l'm't's' ouïr
-SFX iW uïr uïrai/n'q'j'l'm't' ouïr
-SFX iW uïr rrai/n'q'j'l'm't' ouïr
-SFX iW uïr uïras/n'q'l'm't' ouïr
-SFX iW uïr rras/n'q'l'm't' ouïr
-SFX iW uïr uïra/n'q'l'm't' ouïr
-SFX iW uïr rra/n'q'l'm't' ouïr
-SFX iW uïr uïrons/n'q'l't' ouïr
-SFX iW uïr rrons/n'q'l't' ouïr
-SFX iW uïr uïrez/n'q'l'm' ouïr
-SFX iW uïr rrez/n'q'l'm' ouïr
-SFX iW uïr uïront/n'q'l'm't's' ouïr
-SFX iW uïr rront/n'q'l'm't's' ouïr
-SFX iW uïr uïrais/n'q'j'l'm't' ouïr
-SFX iW uïr rrais/n'q'j'l'm't' ouïr
-SFX iW uïr uïrais/n'q'l'm't' ouïr
-SFX iW uïr rrais/n'q'l'm't' ouïr
-SFX iW uïr uïrait/n'q'l'm't' ouïr
-SFX iW uïr rrait/n'q'l'm't' ouïr
-SFX iW uïr uïrions/n'q'l't' ouïr
-SFX iW uïr rrions/n'q'l't' ouïr
-SFX iW uïr uïriez/n'q'l'm' ouïr
-SFX iW uïr rriez/n'q'l'm' ouïr
-SFX iW uïr uïraient/n'q'l'm't's' ouïr
-SFX iW uïr rraient/n'q'l'm't's' ouïr
-SFX iW uïr ie/n'j'l'm't' ouïr
-SFX iW uïr ies/n'l'm't' ouïr
-SFX iW uïr ie/n'l'm't's' ouïr
-SFX iW uïr yions/n'l't' ouïr
-SFX iW uïr yiez/n'l'm' ouïr
-SFX iW uïr ient/n'l'm't's' ouïr
-SFX iW uïr uïsse/n'q'j'l'm't' ouïr
-SFX iW uïr uïsses/n'q'l'm't' ouïr
-SFX iW uïr uït/n'q'l'm't' ouïr
-SFX iW uïr uïssions/n'q'l't' ouïr
-SFX iW uïr uïssiez/n'q'l'm' ouïr
-SFX iW uïr uïssent/n'q'l'm't's' ouïr
-SFX iW uïr is/n'l'm' ouïr
-SFX iW uïr yons/n'l' ouïr
-SFX iW uïr yez/n'l'm' ouïr
+SFX iW uir uir/n'q'd'l'm't's' ouir
+SFX iW uir ui-dire/n'q'd'l'm't' ouir
+SFX iW uir yant/n'q'l'm't's' ouir
+SFX iW uir ui/q' ouir
+SFX iW uir uis/q' ouir
+SFX iW uir uie/q' ouir
+SFX iW uir uies/q' ouir
+SFX iW uir is/n'q'j'l'm't' ouir
+SFX iW uir is/n'q'l'm't' ouir
+SFX iW uir it/n'q'l'm't' ouir
+SFX iW uir yons/n'q'l't' ouir
+SFX iW uir yez/n'q'l'm' ouir
+SFX iW uir ient/n'q'l'm't's' ouir
+SFX iW uir yais/n'q'j'l'm't' ouir
+SFX iW uir yais/n'q'l'm't' ouir
+SFX iW uir yait/n'q'l'm't' ouir
+SFX iW uir yions/n'q'l't' ouir
+SFX iW uir yiez/n'q'l'm' ouir
+SFX iW uir yaient/n'q'l'm't's' ouir
+SFX iW uir uis/n'q'j'l'm't' ouir
+SFX iW uir uis/n'q'l'm't' ouir
+SFX iW uir uit/n'q'l'm't' ouir
+SFX iW uir uimes/n'q'l't' ouir
+SFX iW uir uites/n'q'l'm' ouir
+SFX iW uir uirent/n'q'l'm't's' ouir
+SFX iW uir uirai/n'q'j'l'm't' ouir
+SFX iW uir rrai/n'q'j'l'm't' ouir
+SFX iW uir uiras/n'q'l'm't' ouir
+SFX iW uir rras/n'q'l'm't' ouir
+SFX iW uir uira/n'q'l'm't' ouir
+SFX iW uir rra/n'q'l'm't' ouir
+SFX iW uir uirons/n'q'l't' ouir
+SFX iW uir rrons/n'q'l't' ouir
+SFX iW uir uirez/n'q'l'm' ouir
+SFX iW uir rrez/n'q'l'm' ouir
+SFX iW uir uiront/n'q'l'm't's' ouir
+SFX iW uir rront/n'q'l'm't's' ouir
+SFX iW uir uirais/n'q'j'l'm't' ouir
+SFX iW uir rrais/n'q'j'l'm't' ouir
+SFX iW uir uirais/n'q'l'm't' ouir
+SFX iW uir rrais/n'q'l'm't' ouir
+SFX iW uir uirait/n'q'l'm't' ouir
+SFX iW uir rrait/n'q'l'm't' ouir
+SFX iW uir uirions/n'q'l't' ouir
+SFX iW uir rrions/n'q'l't' ouir
+SFX iW uir uiriez/n'q'l'm' ouir
+SFX iW uir rriez/n'q'l'm' ouir
+SFX iW uir uiraient/n'q'l'm't's' ouir
+SFX iW uir rraient/n'q'l'm't's' ouir
+SFX iW uir ie/n'j'l'm't' ouir
+SFX iW uir ies/n'l'm't' ouir
+SFX iW uir ie/n'l'm't's' ouir
+SFX iW uir yions/n'l't' ouir
+SFX iW uir yiez/n'l'm' ouir
+SFX iW uir ient/n'l'm't's' ouir
+SFX iW uir uisse/n'q'j'l'm't' ouir
+SFX iW uir uisses/n'q'l'm't' ouir
+SFX iW uir uit/n'q'l'm't' ouir
+SFX iW uir uissions/n'q'l't' ouir
+SFX iW uir uissiez/n'q'l'm' ouir
+SFX iW uir uissent/n'q'l'm't's' ouir
+SFX iW uir is/n'l'm' ouir
+SFX iW uir yons/n'l' ouir
+SFX iW uir yez/n'l'm' ouir
 
 SFX iX N 5
 SFX iX erir erir ferir
